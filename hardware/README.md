@@ -7,3 +7,5 @@ PCB designs for the XIAO Wi-Fi FPV drone. The system requirements live in [docs/
 | [shield/](shield/) | The shield the XIAO ESP32-S3 Sense plugs into: motor drivers, IMU, power, battery sense | Requirements written; KiCad project not started |
 
 Tools: KiCad 8 or newer. Boards are made at JLCPCB (2-layer, standard specs, Economic PCBA, top side only).
+
+Datasheets and board schematics for every part are in [datasheets/](datasheets/README.md).
