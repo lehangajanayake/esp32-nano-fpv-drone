@@ -9,7 +9,7 @@ A brief for a local Claude session with the KiCad MCP connected, working in a cl
 
 ## 2. Schematic
 
-1. Place every part in section 8.1 and the non-assembled parts in section 8.2, with the reference designators exactly as in the requirements (U1, U2, Q1 to Q5, D1 to D5, R1 to R13, C1 to C12, LED1, J1, J2, BAT1, MOT1 to MOT4, NT1, TP1 to TP5, H1 to H4).
+1. Place every part in section 8.1 and the non-assembled parts in section 8.2, with the reference designators exactly as in the requirements (U1, U2, Q1 to Q5, D1 to D4, R1 to R13, C1 to C12, LED1, J1, J2, J3, BAT1, MOT1 to MOT4, NT1, TP1 to TP5, H1 to H4).
 2. Wire them with **net labels named exactly as in section 5** (`VBAT_P`, `PGND`, `GND`, `MOT1_N`, `SPI_SCK`, and so on), following sections 4.1 to 4.7 and the socket table in 5.1. Use labels rather than long wires so the sheet stays readable.
 3. Lay the sheet out in the blocks of section 7: battery input and protection, motor drivers x 4, XIAO sockets, XIAO power, IMU + LDO, battery sense, status LED, test points and holes. Add a text note per block naming its `SH-`/`XD-` requirement.
 4. Fill a `LCSC` field on every assembled part from section 8.1. Mark J1, J2, BAT1, MOT1 to MOT4, NT1, TP1 to TP5 and H1 to H4 as excluded from BOM and position files.

@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/lehangajanayake/Projects/esp32-nano-fpv-drone/hardware/shield/shield.kicad_sch</source>
-    <date>2026-11-26T17:50:53</date>
+    <date>2026-11-27T01:43:30</date>
     <tool>Eeschema 10.0.7</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -434,32 +434,6 @@
         </unit>
       </units>
     </comp>
-    <comp ref="D5">
-      <value>SS34</value>
-      <footprint>Diode_SMD:D_SMA</footprint>
-      <fields>
-        <field name="LCSC">C8678</field>
-        <field name="Footprint">Diode_SMD:D_SMA</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Device" part="D_Schottky" description="Schottky diode"/>
-      <property name="LCSC" value="C8678"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="ki_keywords" value="diode Schottky"/>
-      <property name="ki_fp_filters" value="TO-???* *_Diode_* *SingleDiode* D_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>38a37725-6881-58ee-8df1-b91a39b4cd18</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
     <comp ref="H1">
       <value>M2</value>
       <footprint>MountingHole:MountingHole_2.2mm_M2</footprint>
@@ -610,6 +584,31 @@
             <pin num="5"/>
             <pin num="6"/>
             <pin num="7"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J3">
+      <value>XIAO_BAT+_wire</value>
+      <footprint>TestPoint:TestPoint_THTPad_2.0x2.0mm_Drill1.0mm</footprint>
+      <fields>
+        <field name="Footprint">TestPoint:TestPoint_THTPad_2.0x2.0mm_Drill1.0mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Connector" part="TestPoint" description="test point"/>
+      <property name="Sheetname" value="shield"/>
+      <property name="Sheetfile" value="shield.kicad_sch"/>
+      <property name="exclude_from_bom"/>
+      <property name="exclude_from_pos_files"/>
+      <property name="ki_keywords" value="test point tp"/>
+      <property name="ki_fp_filters" value="Pin* Test*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>afcf089c-92e6-5aea-9b0c-693ff26b1665</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
           </pins>
         </unit>
       </units>
@@ -1963,6 +1962,8 @@
     <net code="25" name="/VBAT_P" class="Default">
       <node ref="C10" pin="1" pintype="passive"/>
       <node ref="C11" pin="1" pintype="passive"/>
+      <node ref="C12" pin="1" pintype="passive"/>
+      <node ref="C4" pin="1" pintype="passive"/>
       <node ref="C5" pin="1" pintype="passive"/>
       <node ref="C6" pin="1" pintype="passive"/>
       <node ref="C8" pin="1" pintype="passive"/>
@@ -1971,7 +1972,7 @@
       <node ref="D2" pin="1" pinfunction="K_1" pintype="passive"/>
       <node ref="D3" pin="1" pinfunction="K_1" pintype="passive"/>
       <node ref="D4" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="D5" pin="2" pinfunction="A_2" pintype="passive"/>
+      <node ref="J3" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="MOT1" pin="1" pinfunction="Pin_1_1" pintype="passive"/>
       <node ref="MOT2" pin="1" pinfunction="Pin_1_1" pintype="passive"/>
       <node ref="MOT3" pin="1" pinfunction="Pin_1_1" pintype="passive"/>
@@ -1991,9 +1992,6 @@
       <node ref="R9" pin="2" pintype="passive"/>
     </net>
     <net code="27" name="/XIAO_5V" class="Default">
-      <node ref="C12" pin="1" pintype="passive"/>
-      <node ref="C4" pin="1" pintype="passive"/>
-      <node ref="D5" pin="1" pinfunction="K_1" pintype="passive"/>
       <node ref="J2" pin="1" pinfunction="Pin_1_1" pintype="passive"/>
       <node ref="TP4" pin="1" pinfunction="1_1" pintype="passive"/>
     </net>

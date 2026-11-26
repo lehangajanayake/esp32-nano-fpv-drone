@@ -4021,112 +4021,6 @@
 		(uuid "bd8212ed-6ac4-521a-a540-444d8e1e2ea6")
 	)
 	(symbol
-		(lib_id "Device:D_Schottky")
-		(at 172.72 152.4 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "38a37725-6881-58ee-8df1-b91a39b4cd18")
-		(property "Reference" "D5"
-			(at 172.72 148.59 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Value" "SS34"
-			(at 172.72 147.066 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Footprint" "Diode_SMD:D_SMA"
-			(at 172.72 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Datasheet" ""
-			(at 172.72 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Description" ""
-			(at 172.72 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "LCSC" "C8678"
-			(at 172.72 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(pin "1"
-			(uuid "889a3138-73a9-5088-a8dd-2ee0f744c799")
-		)
-		(pin "2"
-			(uuid "154b4a82-e95d-525e-8188-e45e8ca9fadb")
-		)
-		(instances
-			(project "shield"
-				(path "/c4d34b33-9949-5c0d-9c9c-2023448f4d41"
-					(reference "D5")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 168.91 152.4) (xy 166.37 152.4)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c24cd85d-f234-5f49-b64e-2ba09ce49126")
-	)
-	(label "XIAO_5V"
-		(at 166.37 152.4 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "0707f45d-a388-5deb-b9d5-c5351465ea23")
-	)
-	(wire
-		(pts
-			(xy 176.53 152.4) (xy 179.07 152.4)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9e7e5234-9e95-5857-a1c5-09ecf2eaaa15")
-	)
-	(label "VBAT_P"
-		(at 179.07 152.4 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "f6024365-a5ea-5617-b0e1-50aae152b3b8")
-	)
-	(symbol
 		(lib_id "Device:C")
 		(at 203.2 162.56 0)
 		(unit 1)
@@ -4202,7 +4096,7 @@
 		)
 		(uuid "c884067b-98ec-599d-97e3-113604325e53")
 	)
-	(label "XIAO_5V"
+	(label "VBAT_P"
 		(at 203.2 156.21 90)
 		(effects
 			(font
@@ -4308,7 +4202,7 @@
 		)
 		(uuid "774e3591-ee42-5411-9b37-5468b8baeca7")
 	)
-	(label "XIAO_5V"
+	(label "VBAT_P"
 		(at 220.98 156.21 90)
 		(effects
 			(font
@@ -6646,7 +6540,7 @@
 		)
 		(uuid "5730f623-23d1-5fe0-9ff2-521f43df500b")
 	)
-	(text "XIAO power\nSH 4.3, D1 / XD-S15. Battery feeds XIAO 5V through D5; USB 5V cannot back-feed VBAT_P"
+	(text "XIAO power\nSH 4.3, D1 / XD-S15. J3 pad: wire to the XIAO BAT+ pad (XIAO Q1 P-FET path, no diode drop).\nUSB in: XIAO charger charges the battery (4.2 V, 110 mA).\nXIAO 5V pin goes to TP4 only"
 		(exclude_from_sim no)
 		(at 146.27 126.27 0)
 		(effects
@@ -7360,6 +7254,82 @@
 			(justify left bottom)
 		)
 		(uuid "0d247b57-a240-5671-96b6-15d8bfb78a4e")
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 172.72 152.4 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "afcf089c-92e6-5aea-9b0c-693ff26b1665")
+		(property "Reference" "J3"
+			(at 174.625 151.13 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)) (justify left))
+		)
+		(property "Value" "XIAO_BAT+_wire"
+			(at 174.625 148.59 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)) (justify left))
+		)
+		(property "Footprint" "TestPoint:TestPoint_THTPad_2.0x2.0mm_Drill1.0mm"
+			(at 172.72 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Datasheet" ""
+			(at 172.72 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Description" ""
+			(at 172.72 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(pin "1"
+			(uuid "81aa6b38-9b29-5b77-a463-719c5d8e3a5f")
+		)
+		(instances
+			(project "shield"
+				(path "/c4d34b33-9949-5c0d-9c9c-2023448f4d41"
+					(reference "J3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 172.72 152.4) (xy 172.72 154.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cd91df6d-d6a2-5e03-a3d9-fe4b951b2525")
+	)
+	(label "VBAT_P"
+		(at 172.72 154.94 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "df8fb946-4a6f-58ce-b9ee-7802eb30627b")
 	)
 	(sheet_instances
 		(path "/"

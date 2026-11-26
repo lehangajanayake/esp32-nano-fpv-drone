@@ -18,7 +18,7 @@ These fill gaps the system spec left open, or change it for cost. Each is easy t
 
 | # | Decision | Why |
 | --- | --- | --- |
-| D1 | **XIAO power (XD-S15):** VBAT\_P feeds the XIAO's **5V pin through a Schottky diode** (SS34, the same basic part as the flyback diodes). The XIAO's battery pads are not used. | This is the method Seeed's wiki gives for feeding the 5V pin ("some sort of diode ... anode to battery, cathode to 5V pin"). The diode stops USB 5 V reaching the battery and motors (test B4), and stops the motors pulling the XIAO's own capacitors down during throttle punches, which helps test B7. The XIAO's onboard regulator is a buck converter (SGM6029), not a fixed-dropout LDO **[VERIFY]**. |
+| D1 | **XIAO power (XD-S15):** VBAT\_P feeds the XIAO's **BAT+ pad** through a short wire to shield pad **J3**. The XIAO's 5V pin is not powered by the shield (it only goes to TP4). | Seeed's v1.51 schematic shows the 5V pin (VBUS) reaches the XIAO's SGM6029 buck through an internal Schottky (D2, LMBR4010), while BAT+ reaches it through a P-FET (Q1, LP0404N3T5G, gate held by VBUS). The original plan (an SS34 into the 5V pin) put two diode drops in series, about 0.75 V, so the ESP32 fell below its 3.0 V minimum once the battery sagged under about 3.8 V. Through BAT+ the drop is about 0.05 V and the SGM6029 (1.95 to 5.5 V in, 100% duty cycle) passes the battery straight through, so the XIAO holds about 3.3 V down to a 3.4 V battery and stays near 2.9 V at a 3.1 V punch (test B7). Trade-off: with USB plugged in, the XIAO's SGM40567 charger charges the drone battery at 4.2 V, about 110 mA (test B4 changed to match). Decided 2026-11-27. |
 | D2 | **IMU LDO:** use **XC6206P332MR** (JLC basic, C5446) instead of ME6211C33 **if** ME6211 shows as an extended part on order day. | The IMU draws under 1 mA, so the XC6206's higher dropout costs nothing here, and a basic part avoids one setup fee. The footprints differ (SOT-23 vs SOT-23-5), so choose before layout. |
 | D3 | **Female headers (J1, J2) are hand-soldered by you**, not assembled by JLC. | Through-hole assembly at JLC adds a fee and a second process. 14 joints take five minutes. JLC then assembles SMD on the top side only. |
 | D4 | **Board 32 x 32 mm, 1.0 mm thick**, 4 x M2 mounting holes on a 26 x 26 mm square. | Leaves room for the corner motor drivers and keeps the board under about 2 g bare. JLC charges the same for 0.8 to 1.6 mm on 2-layer boards **[VERIFY in the quote]**. |
@@ -79,7 +79,7 @@ These sit just inside JLC's standard 2-layer capabilities, so nothing triggers a
 | USB-C | On the front (component) side, overhangs the USB end edge by about 1 to 1.5 mm | **[VERIFY]** |
 | U.FL antenna connector | Front side, near a corner | **[VERIFY]** exact corner |
 | Sense expansion board | Plugs into a 30-pin board-to-board connector (DF40C-30DP-0.4V) on the XIAO; holds the camera FPC connector and microSD slot | Seeed schematic |
-| Battery pads | Back side; **not used** by this design | D1 |
+| Battery pads | Back side. **BAT+ is used**: a short wire to shield pad J3 (D1). BAT− is not needed, ground comes through pin 13. **[VERIFY]** BAT+ is reachable with the Sense board fitted | D1 |
 
 Pin order (Seeed numbering, front view, USB-C pointing up):
 
@@ -176,13 +176,23 @@ For each motor n = 1 to 4:
 
 ### 4.3 XIAO power (XD-S15, decision D1)
 
-- **D5** SS34: anode → VBAT\_P, cathode → net XIAO\_5V → XIAO pin 14 (5V).
-- **C12** 22 µF and **C4** 100 nF from XIAO\_5V to GND, at the socket pin.
+- **J3** wire pad (2.0 x 2.0 mm, 1.0 mm plated hole) on VBAT\_P. A short wire (26 to 28 AWG silicone) runs from the XIAO's **BAT+** pad on its back up through J3 and is soldered on the top side.
+- **C12** 22 µF and **C4** 100 nF from VBAT\_P to GND, right at J3: local decoupling for the XIAO's supply.
+- XIAO pin 14 (5V) goes to **TP4** only, so you can see whether USB is present. It is never tied to VBAT\_P.
 - XIAO pin 12 (3V3) is **not connected** (no-connect flag). It is never tied to the IMU rail (XD-S12).
-- XIAO pin 13 (GND) → GND.
-- With USB plugged in, XIAO\_5V sits at about 5 V and D5 is reverse biased, so nothing reaches VBAT\_P. With the battery only, the XIAO gets VBAT\_P minus about 0.3 V.
+- XIAO pin 13 (GND) → GND. It also carries the XIAO's battery current back to the net tie.
 
-**[VERIFY]** the SGM6029's minimum input voltage and whether its output holds 3.0 V or more with 2.9 V in (battery sagging to 3.2 V under full throttle). Test B7 is the final check. If it browns out, the fallback is a lower-drop part for D5 (for example a second DMP2008UFG wired as an ideal diode, which costs no extra setup fee because the part is already on the board).
+**Why BAT+ and not the 5V pin.** Inside the XIAO (Seeed schematic v1.51, page 4) the 5V pin feeds the SGM6029 buck through a Schottky (D2), and BAT+ feeds it through a P-FET (Q1) that turns off when USB is present. Going in at 5V meant two diode drops (our SS34 plus D2, about 0.75 V); BAT+ costs about 0.05 V. The SGM6029 runs from 1.95 V and switches to 100% duty cycle near its output voltage (datasheet in `hardware/datasheets/ics/`), so its output is the battery voltage minus about 0.15 V at 0.45 A (185 mΩ typical high-side switch plus the inductor).
+
+| Battery (under load) | Old: SS34 into 5V | Now: BAT+ |
+| --- | --- | --- |
+| 4.1 V | 3.3 V | 3.3 V |
+| 3.4 V | about 2.5 V (below the ESP32-S3's 3.0 V) | about 3.2 V |
+| 3.1 V (full-throttle punch, low pack) | about 2.2 V | about 2.9 V |
+
+**With USB plugged in:** the XIAO runs from USB (Q1 off), and its SGM40567 charger charges whatever is on BAT+, which is the drone battery through Q5. That is a proper Li-ion CC/CV charge to 4.2 V at about 110 mA, so it is safe for a 1S LiPo (a LiHV pack just stops short of full). VBAT\_P, the IMU LDO and the motor rail are live while charging, as they are any time a battery is plugged in; the gate pull-downs hold the motors off, and the firmware must refuse to arm while USB is connected. With USB and no battery, the charger's output (up to 4.2 V, about 110 mA) appears on VBAT\_P and the battery pads.
+
+Test B7 (all motors at full while the supply drops to 3.0 V) is still the final check. If the XIAO resets there, the next step is a lower-sag pack or a buck-boost into BAT+, not a change to this path.
 
 ### 4.4 IMU and its LDO (XD-S11, S12, S18, S22)
 
@@ -221,7 +231,7 @@ For each motor n = 1 to 4:
 
 ### 4.7 Test points (free, no parts)
 
-1.0 mm round top-side pads: **TP1** VBAT\_P, **TP2** +3V3\_IMU, **TP3** GND, **TP4** XIAO\_5V, **TP5** IMU\_INT1. They make bring-up tests B2, B5 and B14 easier.
+1.0 mm round top-side pads: **TP1** VBAT\_P, **TP2** +3V3\_IMU, **TP3** GND, **TP4** XIAO\_5V (live only with USB plugged in), **TP5** IMU\_INT1. They make bring-up tests B2, B5 and B14 easier.
 
 ### 4.8 Pin notes
 
@@ -238,14 +248,14 @@ Net names are the ones to use in the schematic. This table is the design intent;
 | Net | Connects | Net class |
 | --- | --- | --- |
 | BAT\_IN | BAT1 `+`, Q5 drain (pins 5 to 8 and pad) | POWER\_HI |
-| VBAT\_P | Q5 source (pins 1 to 3), C8 to C11, MOT1 to MOT4 `+`, D1 to D4 cathodes, D5 anode, U2 VIN (and CE on ME6211), C5, C6, R9, TP1 | POWER\_HI (trunk), MOTOR (branches) |
+| VBAT\_P | Q5 source (pins 1 to 3), C8 to C11, MOT1 to MOT4 `+`, D1 to D4 cathodes, J3, C12, C4, U2 VIN (and CE on ME6211), C5, C6, R9, TP1 | POWER\_HI (trunk), MOTOR (branches) |
 | PGND | BAT1 `-`, Q1 to Q4 sources, C8 to C11, R5 to R8, R12, NT1 pin 1 | POWER\_HI |
 | GND | NT1 pin 2, J2 pin 13 (XIAO GND), U1 pins 2, 3, 6, 7, U2 GND, C1 to C7, C12, R10, LED1 cathode, TP3 | SIGNAL\_GND |
 | Q5\_G | Q5 gate (pin 4), R12 | SIGNAL |
 | MOT1\_N to MOT4\_N | MOTn `-`, Qn drain, Dn anode | MOTOR |
 | PWM1 to PWM4 | XIAO D0 to D3 (pins 1 to 4), R1 to R4 | SIGNAL |
 | GATE1 to GATE4 | R1 to R4, Q1 to Q4 gates, R5 to R8 | SIGNAL |
-| XIAO\_5V | D5 cathode, XIAO pin 14 (5V), C12, C4, TP4 | POWER\_LO |
+| XIAO\_5V | XIAO pin 14 (5V, USB VBUS), TP4 | SIGNAL (probe only, no current) |
 | +3V3\_IMU | U2 VOUT, C7, U1 VDD and VDDIO, C1, C2, R11, TP2 | POWER\_LO |
 | VBAT\_SENSE | R9, R10, C3, XIAO D4 (pin 5) | SIGNAL |
 | IMU\_INT1 | U1 pin 4, XIAO D5 (pin 6), TP5 | SIGNAL |
@@ -270,7 +280,7 @@ J1 and J2 are the two 1 x 7 sockets. J1 carries XIAO pins 1 to 7, J2 carries pin
 | J1-5 | 5 | D4 / GPIO5 (ADC1\_CH4) | VBAT\_SENSE |
 | J1-6 | 6 | D5 / GPIO6 | IMU\_INT1 |
 | J1-7 | 7 | D6 / GPIO43 | IMU\_CS |
-| J2-1 | 14 | 5V | XIAO\_5V |
+| J2-1 | 14 | 5V | XIAO\_5V (TP4 only) |
 | J2-2 | 13 | GND | GND |
 | J2-3 | 12 | 3V3 | no connect |
 | J2-4 | 11 | D10 / GPIO9 | SPI\_MOSI |
@@ -292,7 +302,7 @@ Widths are for 1 oz outer copper using IPC-2221 (external layer). The 8 A figure
 | --- | --- | --- | --- | --- | --- |
 | POWER\_HI | BAT\_IN, VBAT\_P trunk (pads to Q5 to bulk caps to the branch points), PGND | 8 A peak, 5 A hover | **Copper pour, 4 mm or wider** (5 mm gives about 10 °C rise at 8 A, 3.5 mm about 20 °C). Where a width is forced, 3 mm absolute minimum (XD-S17) | 0.2 mm | 0.4/0.8 mm; **at least 8 vias** wherever this current changes layer (about 1 A per via) |
 | MOTOR | MOT1\_N to MOT4\_N, VBAT\_P branch to each motor | 2 A peak per motor | **1.0 mm** (about 10 °C rise at 2 A); 1.5 mm where room allows | 0.2 mm | 0.4/0.8 mm, at least 3 per layer change |
-| POWER\_LO | XIAO\_5V, +3V3\_IMU | 0.5 A / 0.01 A | 0.5 mm / 0.3 mm | 0.15 mm | 0.3/0.6 mm, 2 per layer change for XIAO\_5V |
+| POWER\_LO | VBAT\_P branch to J3 / C12 / C4 (XIAO supply), +3V3\_IMU | 0.5 A / 0.01 A | 0.5 mm / 0.3 mm | 0.15 mm | 0.3/0.6 mm, 2 per layer change on the J3 branch |
 | SPI | SPI\_SCK, SPI\_MISO, SPI\_MOSI, IMU\_CS | 10 MHz | 0.2 mm | 0.15 mm (0.3 mm to motor nets) | 0.3/0.6 mm |
 | SIGNAL | PWMn, GATEn, Q5\_G, VBAT\_SENSE, IMU\_INT1, LED\_STAT, LED\_A | mA | 0.2 mm | 0.15 mm | 0.3/0.6 mm |
 | SIGNAL\_GND | GND | 0.5 A | Pour; 0.5 mm min where traced | 0.15 mm | 0.3/0.6 mm |
@@ -317,7 +327,7 @@ Pads on POWER\_HI and MOTOR pours use **solid** zone connections (no thermal rel
 | SH-P6 | Gate resistors Rn at the MOSFET end of the PWM trace, pull-downs R(n+4) at the MOSFET gate pin | XD-S7 |
 | SH-P7 | BAT1 pads on the rear edge, Q5 within 4 mm of them, C8 and C9 within 3 mm of Q5's source. BAT1 between X = 9 and 23 must leave the USB-C plug path behind the board clear (pads are on the top side, so they don't block it) | XD-S19, S14 |
 | SH-P8 | Q5 drain and source each on 30 mm² or more of copper (top), with 6 or more vias to matching bottom copper for heat spreading | XD-S20 |
-| SH-P9 | D5 and C12 next to J2 pin 1 (XIAO 5V); C4 between them and the pin | XD-S15 |
+| SH-P9 | J3 just outside the XIAO footprint (SH-H4), as close as possible to where the XIAO's BAT+ pad sits, so the wire is short; C12 and C4 within 2 mm of J3. Its VBAT\_P branch comes off the trunk on the GND side, away from the motor branches **[VERIFY BAT+ pad position on the XIAO]** | XD-S15 |
 | SH-P10 | R9, R10, C3 near J1 pin 5, on the GND side, away from motor copper | XD-S16 |
 | SH-P11 | LED1 and R13 on the rear edge, not under the battery pigtail path | XD-S25 |
 | SH-P12 | Motor pads within 2 mm of the board edge, at the corner nearest their motor, clear of the mounting-hole keep-outs | XD-S9 |
@@ -361,7 +371,7 @@ Prices and basic/extended status change; **re-check every part number in JLC's l
 | U2 | ME6211C33M5G-N, 3.3 V LDO (or XC6206P332MR, C5446, basic, SOT-23, per D2) | SOT-23-5 | C82942 | **[VERIFY]** | 1 |
 | Q1-Q4 | AO3400A N-MOSFET 30 V 5.7 A | SOT-23 | C20917 | Basic | 4 |
 | Q5 | DMP2008UFG-7 P-MOSFET 20 V 14 A | PowerDI3333-8 | C461052 | Extended | 1 |
-| D1-D5 | SS34 Schottky 40 V 3 A | SMA (DO-214AC) | C8678 | Basic | 5 |
+| D1-D4 | SS34 Schottky 40 V 3 A | SMA (DO-214AC) | C8678 | Basic | 4 |
 | R1-R4 | 100 Ω 1% | 0402 | C25076 | Basic | 4 |
 | R5-R10 | 100 kΩ 1% | 0402 | C25741 | Basic | 6 |
 | R11, R12 | 10 kΩ 1% | 0402 | C25744 | Basic | 2 |
@@ -380,6 +390,7 @@ That is **3 or 4 extended parts** (U1, Q5, and possibly U2 and LED1). Choosing X
 | J1, J2 | 1 x 7 female header, 2.54 mm, 8.5 mm tall | 2 | Hand-soldered from the top side; buy a strip and cut |
 | — | Male headers on the XIAO | 2 x 7 | Come pre-soldered on the "pre-soldered" XIAO |
 | — | Battery pigtail (A30 or BT2.0, 20 AWG) | 1 | Soldered to BAT1 (XD-B3) |
+| J3 wire | 26 to 28 AWG silicone wire, about 15 mm | 1 | XIAO BAT+ pad to J3 (section 4.3); unsolder it to pull the XIAO |
 | — | M2 screws or printed pins | 4 | For the frame |
 
 ### 8.3 Rough JLC cost (5 boards, all assembled)
@@ -399,7 +410,7 @@ Rough figures from JLC's usual pricing, to be replaced by the real quote. The sy
 
 ## 9. Bring-up hooks
 
-The board supports these tests from the system spec without extra hardware: B2 (TP2 for the 3.3 V rail), B4 (TP1 with USB plugged in must read 0 V), B5 (TP5 for INT1), B13 (bench supply on BAT1), B14 (measure across BAT1 `+` and TP1 for Q5's drop).
+The board supports these tests from the system spec without extra hardware: B2 (TP2 for the 3.3 V rail), B4 (USB alone: TP1 reads at most 4.2 V from the XIAO charger, TP4 about 5 V, motors stay off), B5 (TP5 for INT1), B13 (bench supply on BAT1), B14 (measure across BAT1 `+` and TP1 for Q5's drop).
 
 ---
 
@@ -435,7 +446,7 @@ Before the schematic is frozen:
 1. **Which side the XIAO's pins come out of**, and that the Sense board fits between or above the header spacers (SH-O8, SH-O9). This decides the mirroring of the whole socket footprint.
 2. **XIAO row spacing (15.24 mm) and pin 1 position (about 2.88 mm from the USB-C end)** against Seeed's KiCad footprint or dimension drawing (SH-O3).
 3. **U.FL corner, USB-C overhang and the Sense board's height** in the 11 mm gap (SH-H2 to H7).
-4. **The XIAO's regulator (SGM6029) minimum input voltage**, to confirm the diode feed in D1 won't brown out when the battery sags (section 4.3).
+4. ~~The XIAO's regulator (SGM6029) minimum input voltage~~ **Resolved 2026-11-27:** 1.95 V minimum with 100% duty cycle, but the 5V pin has an internal Schottky, so the feed moved to BAT+ (D1, section 4.3). Still to check: **where the BAT+ pad is and that a wire reaches it with the Sense board fitted** (SH-P9).
 5. **JLC basic or extended status and stock** for every part in 8.1, in particular ME6211 (decides D2) and the LED.
 6. **LSM6DS3TR-C pinout and axis marking** against the datasheet (4.4, SH-P1).
 7. **DMP2008UFG pinout** (source pins 1 to 3, gate 4, drain 5 to 8 and the pad) against the Diodes datasheet.
@@ -446,4 +457,4 @@ After the boards arrive: the bring-up tests B2 to B16 in the system spec.
 
 ---
 
-Sources: [Seeed: Getting started with XIAO ESP32-S3 (dimensions, pin list, 5V pin diode note, battery notes)](https://wiki.seeedstudio.com/xiao_esp32s3_getting_started); [Seeed: XIAO ESP32-S3 Sense schematic v1.51 (SGM6029 regulator, SGM40567 charger, DF40C B2B connector, header pins)](https://files.seeedstudio.com/wiki/SeeedStudio-XIAO-ESP32S3/new-res/202003753_XIAO%20ESP32S3%20Sense_V1.51_SCH_260611.pdf); [Seeed forum: powering the XIAO ESP32-S3 from the 5V pin with a diode](https://forum.seeedstudio.com/t/how-to-power-xiao-esp32s3-from-5v-vin-vbus-with-diode/281611); [Diodes DMP2008UFG](https://www.diodes.com/part/view/DMP2008UFG). Track widths from IPC-2221 (external layers, 1 oz).
+Sources: [Seeed: Getting started with XIAO ESP32-S3 (dimensions, pin list, 5V pin diode note, battery notes)](https://wiki.seeedstudio.com/xiao_esp32s3_getting_started); [Seeed: XIAO ESP32-S3 Sense schematic v1.51 (SGM6029 regulator, SGM40567 charger, DF40C B2B connector, header pins)](https://files.seeedstudio.com/wiki/SeeedStudio-XIAO-ESP32S3/new-res/202003753_XIAO%20ESP32S3%20Sense_V1.51_SCH_260611.pdf); [Seeed forum: powering the XIAO ESP32-S3 from the 5V pin with a diode](https://forum.seeedstudio.com/t/how-to-power-xiao-esp32s3-from-5v-vin-vbus-with-diode/281611); [Diodes DMP2008UFG](https://www.diodes.com/part/view/DMP2008UFG); [SG Micro SGM6029 (XIAO buck regulator)](https://www.sg-micro.com/product/SGM6029). Track widths from IPC-2221 (external layers, 1 oz).

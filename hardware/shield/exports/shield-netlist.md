@@ -7,7 +7,7 @@ Nets are in the order of section 5 of [shield-pcb-requirements.md](../docs/shiel
 | Net | Pins | Count |
 | --- | --- | --- |
 | `BAT_IN` | BAT1.1, Q5.5 (D) | 2 |
-| `VBAT_P` | C5.1, C6.1, C8.1, C9.1, C10.1, C11.1, D1.1 (K), D2.1 (K), D3.1 (K), D4.1 (K), D5.2 (A), MOT1.1, MOT2.1, MOT3.1, MOT4.1, Q5.1 (S), Q5.2 (S), Q5.3 (S), R9.1, TP1.1, U2.1 (V\_IN), U2.3 (CE) | 22 |
+| `VBAT_P` | C4.1, C5.1, C6.1, C8.1, C9.1, C10.1, C11.1, C12.1, D1.1 (K), D2.1 (K), D3.1 (K), D4.1 (K), J3.1, MOT1.1, MOT2.1, MOT3.1, MOT4.1, Q5.1 (S), Q5.2 (S), Q5.3 (S), R9.1, TP1.1, U2.1 (V\_IN), U2.3 (CE) | 24 |
 | `PGND` | BAT1.2, C8.2, C9.2, C10.2, C11.2, NT1.1, Q1.2 (S), Q2.2 (S), Q3.2 (S), Q4.2 (S), R5.2, R6.2, R7.2, R8.2, R12.2 | 15 |
 | `GND` | C1.2, C2.2, C3.2, C4.2, C5.2, C6.2, C7.2, C12.2, J2.2, LED1.1 (K), NT1.2, R10.2, TP3.1, U1.2 (SDX), U1.3 (SCX), U1.6 (GND), U1.7 (GND), U2.2 (V\_SS) | 18 |
 | `Q5_G` | Q5.4 (G), R12.1 | 2 |
@@ -23,7 +23,7 @@ Nets are in the order of section 5 of [shield-pcb-requirements.md](../docs/shiel
 | `GATE2` | Q2.1 (G), R2.2, R6.1 | 3 |
 | `GATE3` | Q3.1 (G), R3.2, R7.1 | 3 |
 | `GATE4` | Q4.1 (G), R4.2, R8.1 | 3 |
-| `XIAO_5V` | C4.1, C12.1, D5.1 (K), J2.1, TP4.1 | 5 |
+| `XIAO_5V` | J2.1, TP4.1 | 2 |
 | `+3V3_IMU` | C1.1, C2.1, C7.1, R11.1, TP2.1, U1.5 (VDDIO), U1.8 (VDD), U2.5 (V\_OUT) | 8 |
 | `VBAT_SENSE` | C3.1, J1.5, R9.2, R10.1 | 4 |
 | `IMU_INT1` | J1.6, TP5.1, U1.4 (INT1) | 3 |

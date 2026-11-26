@@ -3,7 +3,8 @@
 the net list in docs/shield-pcb-requirements.md, sections 4, 5 and 8.
 
 Used once to capture the schematic; after that, edit shield.kicad_sch in KiCad
-and do not re-run this (it would overwrite manual edits).
+and do not re-run this (it would overwrite manual edits). The schematic has since
+moved on (motor channels in a sub-sheet, D5 replaced by the J3 BAT+ wire pad).
 
 Every pin is wired with a short wire stub and a local net label, so the sheet
 stays readable and the net names are exactly those of section 5.
