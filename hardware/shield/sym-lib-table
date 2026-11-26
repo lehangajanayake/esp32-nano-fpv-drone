@@ -1,0 +1,4 @@
+(sym_lib_table
+	(version 7)
+	(lib (name "shield") (type "KiCad") (uri "${KIPRJMOD}/lib/symbols/shield.kicad_sym") (options "") (descr "Project symbols: DMP2008UFG, LSM6DS3TR-C"))
+)

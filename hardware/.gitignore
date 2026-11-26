@@ -1,0 +1,13 @@
+# KiCad backups, caches and per-user state
+*-backups/
+*.kicad_prl
+*.lck
+fp-info-cache
+_autosave-*
+\#auto_saved_files\#
+*.bak
+*~
+# Generated outputs are rebuilt from the KiCad files; only keep the release set
+*/production/*
+!*/production/.gitkeep
+!*/production/README.md
