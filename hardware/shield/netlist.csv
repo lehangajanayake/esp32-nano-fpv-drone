@@ -1,0 +1,134 @@
+ref,pin,pin_name,net,note
+BAT1,1,+,BAT_IN,battery positive pad 3x4 mm
+BAT1,2,-,PGND,battery negative pad 3x4 mm
+Q5,1,S,VBAT_P,DMP2008UFG-7 source (verify pinout)
+Q5,2,S,VBAT_P,
+Q5,3,S,VBAT_P,
+Q5,4,G,Q5_G,
+Q5,5,D,BAT_IN,drain pins 5-8 and exposed pad
+Q5,6,D,BAT_IN,
+Q5,7,D,BAT_IN,
+Q5,8,D,BAT_IN,
+Q5,9,D_PAD,BAT_IN,exposed pad
+R12,1,,Q5_G,10k
+R12,2,,PGND,
+C8,1,,VBAT_P,22uF at Q5 source
+C8,2,,PGND,
+C9,1,,VBAT_P,22uF at Q5 source
+C9,2,,PGND,
+C10,1,,VBAT_P,22uF near Q4 (front left)
+C10,2,,PGND,
+C11,1,,VBAT_P,22uF near Q2 (front right)
+C11,2,,PGND,
+NT1,1,,PGND,net tie at BAT1 negative pad
+NT1,2,,GND,
+J1,1,XIAO_1_D0,PWM1,GPIO1
+J1,2,XIAO_2_D1,PWM2,GPIO2
+J1,3,XIAO_3_D2,PWM3,GPIO3 (strapping pin; harmless)
+J1,4,XIAO_4_D3,PWM4,GPIO4
+J1,5,XIAO_5_D4,VBAT_SENSE,GPIO5 ADC1_CH4
+J1,6,XIAO_6_D5,IMU_INT1,GPIO6
+J1,7,XIAO_7_D6,IMU_CS,GPIO43
+J2,1,XIAO_14_5V,XIAO_5V,
+J2,2,XIAO_13_GND,GND,
+J2,3,XIAO_12_3V3,,no connect
+J2,4,XIAO_11_D10,SPI_MOSI,GPIO9
+J2,5,XIAO_10_D9,SPI_MISO,GPIO8
+J2,6,XIAO_9_D8,SPI_SCK,GPIO7
+J2,7,XIAO_8_D7,LED_STAT,GPIO44
+D5,A,A,VBAT_P,SS34 XIAO feed
+D5,K,K,XIAO_5V,
+C12,1,,XIAO_5V,22uF at J2 pin 1
+C12,2,,GND,
+C4,1,,XIAO_5V,100nF at J2 pin 1
+C4,2,,GND,
+U2,1,VIN,VBAT_P,ME6211C33M5G-N pinout; XC6206 SOT-23 differs (1 GND 2 VOUT 3 VIN)
+U2,2,GND,GND,
+U2,3,CE,VBAT_P,tie to VIN
+U2,4,NC,,no connect
+U2,5,VOUT,+3V3_IMU,
+C5,1,,VBAT_P,100nF LDO input
+C5,2,,GND,
+C6,1,,VBAT_P,10uF LDO input
+C6,2,,GND,
+C7,1,,+3V3_IMU,10uF LDO output
+C7,2,,GND,
+U1,1,SDO/SA0,SPI_MISO,LSM6DS3TR-C (verify pinout)
+U1,2,SDx,GND,
+U1,3,SCx,GND,
+U1,4,INT1,IMU_INT1,
+U1,5,VDDIO,+3V3_IMU,
+U1,6,GND,GND,
+U1,7,GND,GND,
+U1,8,VDD,+3V3_IMU,
+U1,9,INT2,,no connect
+U1,10,OCS_Aux,,no connect
+U1,11,SDO_Aux,,no connect
+U1,12,CS,IMU_CS,
+U1,13,SCL/SPC,SPI_SCK,
+U1,14,SDA/SDI/SDO,SPI_MOSI,
+C1,1,,+3V3_IMU,100nF at U1 VDD
+C1,2,,GND,
+C2,1,,+3V3_IMU,100nF at U1 VDDIO
+C2,2,,GND,
+R11,1,,IMU_CS,10k pull-up
+R11,2,,+3V3_IMU,
+R9,1,,VBAT_P,100k divider top
+R9,2,,VBAT_SENSE,
+R10,1,,VBAT_SENSE,100k divider bottom
+R10,2,,GND,
+C3,1,,VBAT_SENSE,100nF divider filter
+C3,2,,GND,
+R13,1,,LED_STAT,1k
+R13,2,,LED_A,
+LED1,A,A,LED_A,
+LED1,K,K,GND,
+TP1,1,,VBAT_P,
+TP2,1,,+3V3_IMU,
+TP3,1,,GND,
+TP4,1,,XIAO_5V,
+TP5,1,,IMU_INT1,
+R1,1,,PWM1,100R gate resistor
+R1,2,,GATE1,
+R5,1,,GATE1,100k gate pull-down
+R5,2,,PGND,
+Q1,1,G,GATE1,AO3400A
+Q1,2,S,PGND,
+Q1,3,D,MOT1_N,
+D1,A,A,MOT1_N,SS34 flyback
+D1,K,K,VBAT_P,
+MOT1,1,+,VBAT_P,motor pad 2x3 mm
+MOT1,2,-,MOT1_N,motor pad 2x3 mm
+R2,1,,PWM2,100R gate resistor
+R2,2,,GATE2,
+R6,1,,GATE2,100k gate pull-down
+R6,2,,PGND,
+Q2,1,G,GATE2,AO3400A
+Q2,2,S,PGND,
+Q2,3,D,MOT2_N,
+D2,A,A,MOT2_N,SS34 flyback
+D2,K,K,VBAT_P,
+MOT2,1,+,VBAT_P,motor pad 2x3 mm
+MOT2,2,-,MOT2_N,motor pad 2x3 mm
+R3,1,,PWM3,100R gate resistor
+R3,2,,GATE3,
+R7,1,,GATE3,100k gate pull-down
+R7,2,,PGND,
+Q3,1,G,GATE3,AO3400A
+Q3,2,S,PGND,
+Q3,3,D,MOT3_N,
+D3,A,A,MOT3_N,SS34 flyback
+D3,K,K,VBAT_P,
+MOT3,1,+,VBAT_P,motor pad 2x3 mm
+MOT3,2,-,MOT3_N,motor pad 2x3 mm
+R4,1,,PWM4,100R gate resistor
+R4,2,,GATE4,
+R8,1,,GATE4,100k gate pull-down
+R8,2,,PGND,
+Q4,1,G,GATE4,AO3400A
+Q4,2,S,PGND,
+Q4,3,D,MOT4_N,
+D4,A,A,MOT4_N,SS34 flyback
+D4,K,K,VBAT_P,
+MOT4,1,+,VBAT_P,motor pad 2x3 mm
+MOT4,2,-,MOT4_N,motor pad 2x3 mm
