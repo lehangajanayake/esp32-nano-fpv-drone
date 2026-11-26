@@ -7,9 +7,10 @@ The board the XIAO ESP32-S3 Sense plugs into (from below), carrying the four bru
 | File | Use |
 | --- | --- |
 | `docs/shield-pcb-requirements.md` | The requirements to build the schematic and layout from |
-| `netlist.csv` | Every part pin and its net, for checking the schematic |
+| `docs/kicad-build-steps.md` | Step-by-step brief for building the schematic and exporting a readable net list with the KiCad MCP |
 | `bom/shield-bom.csv` | JLC-format BOM (Comment, Designator, Footprint, LCSC Part #) |
 | `lib/symbols/`, `lib/footprints/`, `lib/3dmodels/` | Project-local libraries (XIAO, custom pads, STEP models) |
+| `exports/` | Schematic PDF and net list exported from KiCad, committed so they can be reviewed on GitHub |
 | `production/` | Gerber, drill, BOM and CPL exports for an order (generated, not committed) |
 
 ## Creating the KiCad project

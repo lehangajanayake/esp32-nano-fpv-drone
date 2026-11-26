@@ -233,7 +233,7 @@ For each motor n = 1 to 4:
 
 ## 5. Complete net list
 
-Net names are the ones to use in the schematic. The same list is in machine-readable form in [netlist.csv](../netlist.csv).
+Net names are the ones to use in the schematic. This table is the design intent; the **real net list is generated from the KiCad schematic** (see [kicad-build-steps.md](kicad-build-steps.md)) and checked against this table.
 
 | Net | Connects | Net class |
 | --- | --- | --- |
@@ -416,7 +416,7 @@ hardware/
     shield.kicad_pcb         (to be created)
     docs/
       shield-pcb-requirements.md   this document
-    netlist.csv              pin-by-pin net list (section 5)
+      kicad-build-steps.md         steps for building the schematic with the KiCad MCP
     bom/
       shield-bom.csv         JLC-format BOM (section 8.1)
     lib/
