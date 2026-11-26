@@ -1,4 +1,4 @@
-ERC report (2026-11-26T15:41:25, Encoding UTF8)
+ERC report (2026-11-26T17:50:52, Encoding UTF8)
 Report includes: Errors, Warnings
 
 ***** Sheet /
@@ -6,6 +6,14 @@ Report includes: Errors, Warnings
     ; warning
     @(142.24 mm, 241.30 mm): Symbol U1 Pin 2 [SDX, Bidirectional, Line]
     @(116.84 mm, 86.36 mm): Symbol #FLG03 Pin 1 [Power output, Line]
+
+***** Sheet /Motor1/
+
+***** Sheet /Motor2/
+
+***** Sheet /Motor3/
+
+***** Sheet /Motor4/
 
  ** ERC messages: 1  Errors 0  Warnings 1
 

@@ -60,6 +60,10 @@ def main():
     pinname = {}
     for net in root.iter("net"):
         name = net.get("name").lstrip("/")
+        # The motor channels are one sub-sheet used 4 times, so their local nets come out as
+        # Motor<n>/GATE and Motor<n>/MOT_N; map them back to the section 5 names.
+        name = re.sub(r"^Motor(\d)/GATE$", r"GATE\1", name)
+        name = re.sub(r"^Motor(\d)/MOT_N$", r"MOT\1_N", name)
         nodes = []
         for nd in net.iter("node"):
             k = "%s.%s" % (nd.get("ref"), nd.get("pin"))
@@ -117,6 +121,8 @@ def main():
                      "and every listed no-connect in place.")
     lines += ["",
               "Notes on how the section 5 wording maps to KiCad pins:", "",
+              "- GATE1 to GATE4 and MOT1\\_N to MOT4\\_N are `/Motor<n>/GATE` and `/Motor<n>/MOT_N` in KiCad: "
+              "the four motor channels are one sub-sheet (`motor_driver.kicad_sch`) used four times.",
               "- Q5 drain \"pins 5 to 8 and pad\" is pad 5 here: KiCad's `Diodes_PowerDI3333-8` "
               "footprint merges all drain copper into one pad, and the symbol has one drain pin.",
               "- \"D1 to D4 cathodes\" are pin 1 (K) of the `Device:D_Schottky` symbol; anodes are pin 2 (A). "

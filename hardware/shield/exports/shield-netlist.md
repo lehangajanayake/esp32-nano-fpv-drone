@@ -42,6 +42,7 @@ Every net in section 5 matches the schematic pin for pin, with no extra nets and
 
 Notes on how the section 5 wording maps to KiCad pins:
 
+- GATE1 to GATE4 and MOT1\_N to MOT4\_N are `/Motor<n>/GATE` and `/Motor<n>/MOT_N` in KiCad: the four motor channels are one sub-sheet (`motor_driver.kicad_sch`) used four times.
 - Q5 drain "pins 5 to 8 and pad" is pad 5 here: KiCad's `Diodes_PowerDI3333-8` footprint merges all drain copper into one pad, and the symbol has one drain pin.
 - "D1 to D4 cathodes" are pin 1 (K) of the `Device:D_Schottky` symbol; anodes are pin 2 (A). LED1 cathode is pin 1 (K), anode pin 2 (A).
 - Section 5 lists the XIAO GND as "J2 pin 13 (XIAO GND)"; per the socket table in 5.1 that is socket pin J2.2 (XIAO pin 13).
