@@ -10,5 +10,6 @@
 "R5-R10","100k 1%","Resistor_SMD:R_0402_1005Metric","C25741","6"
 "R11,R12","10k 1%","Resistor_SMD:R_0402_1005Metric","C25744","2"
 "R13","1k 1%","Resistor_SMD:R_0402_1005Metric","C11702","1"
+"R14","0R","Resistor_SMD:R_0402_1005Metric","C17168","1"
 "U1","LSM6DS3TR-C","Package_LGA:LGA-14_3x2.5mm_P0.5mm_LayoutBorder3x4y","C967633","1"
 "U2","ME6211C33M5G-N","Package_TO_SOT_SMD:SOT-23-5","C82942","1"

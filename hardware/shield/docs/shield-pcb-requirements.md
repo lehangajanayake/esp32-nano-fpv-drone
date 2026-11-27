@@ -196,7 +196,7 @@ Test B7 (all motors at full while the supply drops to 3.0 V) is still the final 
 
 ### 4.4 IMU and its LDO (XD-S11, S12, S18, S22)
 
-- **U2** LDO (ME6211C33M5G-N, or XC6206P332MR per D2): input VBAT\_P, output +3V3\_IMU. ME6211: CE tied to VIN. **C6** 10 µF + **C5** 100 nF at the input, **C7** 10 µF at the output.
+- **U2** LDO (ME6211C33M5G-N, or XC6206P332MR per D2): input VBAT\_LDO, output +3V3\_IMU. ME6211: CE tied to VIN. **R14** 0 Ω (0402) links VBAT\_P to VBAT\_LDO ahead of the input caps: lift it to isolate a shorted LDO, IMU or input cap from the rest of the board, or to measure the IMU branch current with a meter across its pads. **C6** 10 µF + **C5** 100 nF at the input, **C7** 10 µF at the output.
 - **U1** LSM6DS3TR-C, 4-wire SPI:
 
 | U1 pin | Name | Net |
@@ -250,7 +250,7 @@ Net names are the ones to use in the schematic. This table is the design intent;
 | Net | Connects | Net class |
 | --- | --- | --- |
 | BAT\_IN | BAT1 `+`, Q5 drain (pins 5 to 8 and pad) | POWER\_HI |
-| VBAT\_P | Q5 source (pins 1 to 3), C8 to C11, MOT1 to MOT4 `+`, D1 to D4 cathodes, J3, C12, C4, U2 VIN (and CE on ME6211), C5, C6, R9, TP1 | POWER\_HI (trunk), MOTOR (branches) |
+| VBAT\_P | Q5 source (pins 1 to 3), C8 to C11, MOT1 to MOT4 `+`, D1 to D4 cathodes, J3, C12, C4, R14, R9, TP1 | POWER\_HI (trunk), MOTOR (branches) |
 | PGND | BAT1 `-`, Q1 to Q4 sources, C8 to C11, R5 to R8, R12, NT1 pin 1 | POWER\_HI |
 | GND | NT1 pin 2, J2 pin 13 (XIAO GND), U1 pins 2, 3, 6, 7, U2 GND, C1 to C7, C12, R10, LED1 cathode, TP3 | SIGNAL\_GND |
 | Q5\_G | Q5 gate (pin 4), R12 | SIGNAL |
@@ -258,6 +258,7 @@ Net names are the ones to use in the schematic. This table is the design intent;
 | PWM1 to PWM4 | XIAO D0 to D3 (pins 1 to 4), R1 to R4 | SIGNAL |
 | GATE1 to GATE4 | R1 to R4, Q1 to Q4 gates, R5 to R8 | SIGNAL |
 | XIAO\_5V | XIAO pin 14 (5V, USB VBUS), TP4 | SIGNAL (probe only, no current) |
+| VBAT\_LDO | R14, U2 VIN (and CE on ME6211), C5, C6 | POWER\_LO |
 | +3V3\_IMU | U2 VOUT, C7, U1 VDD and VDDIO, C1, C2, R11, TP2 | POWER\_LO |
 | VBAT\_SENSE | R9, R10, C3, XIAO D4 (pin 5) | SIGNAL |
 | IMU\_INT1 | U1 pin 4, XIAO D5 (pin 6), TP5 | SIGNAL |
@@ -304,7 +305,7 @@ Widths are for 1 oz outer copper using IPC-2221 (external layer). The 8 A figure
 | --- | --- | --- | --- | --- | --- |
 | POWER\_HI | BAT\_IN, VBAT\_P trunk (pads to Q5 to bulk caps to the branch points), PGND | 8 A peak, 5 A hover | **Copper pour, 4 mm or wider** (5 mm gives about 10 °C rise at 8 A, 3.5 mm about 20 °C). Where a width is forced, 3 mm absolute minimum (XD-S17) | 0.2 mm | 0.4/0.8 mm; **at least 8 vias** wherever this current changes layer (about 1 A per via) |
 | MOTOR | MOT1\_N to MOT4\_N, VBAT\_P branch to each motor | 2 A peak per motor | **1.0 mm** (about 10 °C rise at 2 A); 1.5 mm where room allows | 0.2 mm | 0.4/0.8 mm, at least 3 per layer change |
-| POWER\_LO | VBAT\_P branch to J3 / C12 / C4 (XIAO supply), +3V3\_IMU | 0.5 A / 0.01 A | 0.5 mm / 0.3 mm | 0.15 mm | 0.3/0.6 mm, 2 per layer change on the J3 branch |
+| POWER\_LO | VBAT\_P branch to J3 / C12 / C4 (XIAO supply), VBAT\_LDO, +3V3\_IMU | 0.5 A / 0.01 A | 0.5 mm / 0.3 mm | 0.15 mm | 0.3/0.6 mm, 2 per layer change on the J3 branch |
 | SPI | SPI\_SCK, SPI\_MISO, SPI\_MOSI, IMU\_CS | 10 MHz | 0.2 mm | 0.15 mm (0.3 mm to motor nets) | 0.3/0.6 mm |
 | SIGNAL | PWMn, GATEn, Q5\_G, VBAT\_SENSE, IMU\_INT1, LED\_STAT, LED\_A | mA | 0.2 mm | 0.15 mm | 0.3/0.6 mm |
 | SIGNAL\_GND | GND | 0.5 A | Pour; 0.5 mm min where traced | 0.15 mm | 0.3/0.6 mm |
@@ -322,7 +323,7 @@ Pads on POWER\_HI and MOTOR pours use **solid** zone connections (no thermal rel
 | ID | Rule | From |
 | --- | --- | --- |
 | SH-P1 | U1 (IMU) at the board centre (16, 16), its package edges parallel to the board edges, its X axis pointing forward (+Y board) **[VERIFY axis marking on the datasheet and note it in silkscreen]**. Nothing over 1 A within 5 mm of it; no motor or POWER\_HI copper on either layer under it | XD-S11 |
-| SH-P2 | U2 (LDO) and C5 to C7 within 5 mm of U1, on the GND side of the board | XD-S12 |
+| SH-P2 | U2 (LDO) and C5 to C7 within 5 mm of U1, on the GND side of the board. R14 on the VBAT\_P side of C5/C6, reachable with an iron | XD-S12 |
 | SH-P3 | C1 and C2 within 1 mm of U1's VDD and VDDIO pins | XD-S12 |
 | SH-P4 | SPI traces from the J2 pins to U1 under 15 mm, routed together over the GND pour, never parallel to a motor trace for more than 3 mm | XD-S22 |
 | SH-P5 | Each Qn, Dn, Rn, R(n+4) cluster within 6 mm of its motor pads (in the board corners outside the socket rows: X < 7 or X > 25). The loop VBAT\_P → motor pad → drain → Dn → VBAT\_P as small as possible | XD-S6, S8 |
@@ -378,6 +379,7 @@ Prices and basic/extended status change; **re-check every part number in JLC's l
 | R5-R10 | 100 kΩ 1% | 0402 | C25741 | Basic | 6 |
 | R11, R12 | 10 kΩ 1% | 0402 | C25744 | Basic | 2 |
 | R13 | 1 kΩ 1% | 0402 | C11702 | Basic | 1 |
+| R14 | 0 Ω jumper | 0402 | C17168 | Basic | 1 |
 | C1-C5 | 100 nF 16 V X7R | 0402 | C1525 | Basic | 5 |
 | C6, C7 | 10 µF 10 V X5R | 0603 | C19702 | Basic | 2 |
 | C8-C12 | 22 µF 25 V X5R | 0805 | C45783 | Basic | 5 |

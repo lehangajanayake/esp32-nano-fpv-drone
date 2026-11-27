@@ -18,7 +18,8 @@ EXPECTED = {
     "BAT_IN": ["BAT1.1", "Q5.5"],
     "VBAT_P": ["Q5.1", "Q5.2", "Q5.3", "C8.1", "C9.1", "C10.1", "C11.1",
                "MOT1.1", "MOT2.1", "MOT3.1", "MOT4.1", "D1.1", "D2.1", "D3.1", "D4.1",
-               "J3.1", "C12.1", "C4.1", "U2.1", "U2.3", "C5.1", "C6.1", "R9.1", "TP1.1"],
+               "J3.1", "C12.1", "C4.1", "R14.1", "R9.1", "TP1.1"],
+    "VBAT_LDO": ["R14.2", "U2.1", "U2.3", "C5.1", "C6.1"],
     "PGND": ["BAT1.2", "Q1.2", "Q2.2", "Q3.2", "Q4.2", "C8.2", "C9.2", "C10.2", "C11.2",
              "R5.2", "R6.2", "R7.2", "R8.2", "R12.2", "NT1.1"],
     "GND": ["NT1.2", "J2.2", "U1.2", "U1.3", "U1.6", "U1.7", "U2.2", "C1.2", "C2.2", "C3.2",
@@ -43,7 +44,7 @@ EXPECTED_NC = ["J2.3", "U1.9", "U1.10", "U1.11"]
 
 ORDER = (["BAT_IN", "VBAT_P", "PGND", "GND", "Q5_G"] + ["MOT%d_N" % n for n in range(1, 5)]
          + ["PWM%d" % n for n in range(1, 5)] + ["GATE%d" % n for n in range(1, 5)]
-         + ["XIAO_5V", "+3V3_IMU", "VBAT_SENSE", "IMU_INT1", "IMU_CS", "LED_STAT", "LED_A",
+         + ["XIAO_5V", "VBAT_LDO", "+3V3_IMU", "VBAT_SENSE", "IMU_INT1", "IMU_CS", "LED_STAT", "LED_A",
             "SPI_SCK", "SPI_MISO", "SPI_MOSI"])
 
 
