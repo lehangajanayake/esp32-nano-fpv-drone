@@ -236,7 +236,7 @@ Two lists: what JLC assembles onto each shield, and what you buy and fit yoursel
 | C8-C11 | Bulk on VBAT\_P | 22 uF (25 V) | C45783 (matched) | 4 | 0805 |
 | Q5 | Reverse polarity MOSFET | DMP2008UFG-7, P-ch 20 V 14 A, 9.8 mohm at -2.5 V | C461052 (extended) | 1 | PowerDI3333-8 |
 | R12 | Q5 gate to ground | 10 kohm | basic part | 1 | 0402 |
-| LED1 | Status LED | Green, 0603 | C72043 (extended) or any 0603 LED in JLC's basic library | 1 | 0603 |
+| LED1 | Status LED | Red, 0603 (KENTO KT-0603R, Vf about 2 V, about 1.3 mA with R13) | C2286 (basic) | 1 | 0603 |
 | R13 | LED1 series resistor | 1 kohm | basic part | 1 | 0402 |
 | J1-J2 | XIAO sockets | 1 x 7 female header, 2.54 mm | pick in JLC library | 2 | Through-hole |
 | — | Motor pads, battery pads | copper pads only | — | — | — |

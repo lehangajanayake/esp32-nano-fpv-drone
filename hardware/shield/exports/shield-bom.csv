@@ -3,7 +3,7 @@
 "C6,C7","10uF 10V X5R","Capacitor_SMD:C_0603_1608Metric","C19702","2"
 "C8-C12","22uF 25V X5R","Capacitor_SMD:C_0805_2012Metric","C45783","5"
 "D1-D4","SS34","Diode_SMD:D_SMA","C8678","4"
-"LED1","Green","LED_SMD:LED_0603_1608Metric","C72043","1"
+"LED1","Red","LED_SMD:LED_0603_1608Metric","C2286","1"
 "Q1-Q4","AO3400A","Package_TO_SOT_SMD:SOT-23","C20917","4"
 "Q5","DMP2008UFG-7","Package_SON:Diodes_PowerDI3333-8","C461052","1"
 "R1-R4","100R 1%","Resistor_SMD:R_0402_1005Metric","C25076","4"

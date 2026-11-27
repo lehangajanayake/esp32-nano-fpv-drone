@@ -40,7 +40,7 @@ These fill gaps the system spec left open, or change it for cost. Each is easy t
 | SH-M6 | Quantity | 5 boards (JLC minimum), 5 assembled (or 2, Economic PCBA allows assembling fewer than ordered) | XD BOM 7.2 |
 | SH-M7 | Assembly | **Economic PCBA, top side only, SMD only.** No parts on the bottom except the hand-soldered through-hole headers | cost |
 | SH-M8 | Order-number text | Add a silkscreen text `JLCJLCJLCJLC` on the top side in a free 8 x 1.5 mm spot, so JLC prints its order number there for free instead of in a random place | cost |
-| SH-M9 | Parts | Basic library parts wherever possible. Unavoidable extended parts: IMU (LSM6DS3TR-C), protection MOSFET (DMP2008UFG). Possibly the LDO and LED (see D2, section 10) | cost |
+| SH-M9 | Parts | Basic library parts wherever possible. Unavoidable extended parts: IMU (LSM6DS3TR-C), protection MOSFET (DMP2008UFG). Possibly the LDO (see D2, section 10) | cost |
 | SH-M10 | Panel / rails | None. Single board. If JLC asks for edge rails because parts are close to the edge, add them in the order form (small fee) rather than redesigning | cost |
 
 ### 2.1 Design rules (enter these in KiCad Board Setup)
@@ -219,7 +219,9 @@ Test B7 (all motors at full while the supply drops to 3.0 V) is still the final 
 - **C1** 100 nF at VDD (pin 8), **C2** 100 nF at VDDIO (pin 5), both within 1 mm of the pins.
 - **R11** 10 kΩ from IMU\_CS to +3V3\_IMU (IMU deselected while the XIAO boots).
 
-**[VERIFY]** the pin table against the LSM6DS3TR-C datasheet (table "Pin description") and against the symbol you use.
+Pin table checked against the LSM6DS3TR-C datasheet, table 2 "Pin description" (2026-11-27): SDx and SCx "connect to VDDIO or GND" in mode 1, pins 10 and 11 "leave unconnected".
+
+**Firmware note:** while CS is high the IMU listens for I2C on SCK and MOSI, and the Sense board's microSD shares those pins. Write `I2C_disable = 1` in CTRL4_C (13h) at start-up so SD card traffic can never be mistaken for I2C (datasheet section 6.1).
 
 ### 4.5 Battery sense (XD-S16)
 
@@ -227,7 +229,7 @@ Test B7 (all motors at full while the supply drops to 3.0 V) is still the final 
 
 ### 4.6 Status LED (XD-S25)
 
-- XIAO D7 → net LED\_STAT → **R13** 1 kΩ → net LED\_A → **LED1** anode; LED1 cathode → GND. Active high. Place LED1 at the rear edge so it's visible from behind the drone.
+- XIAO D7 → net LED\_STAT → **R13** 1 kΩ → net LED\_A → **LED1** anode; LED1 cathode → GND. Active high. LED1 is **red** (KENTO KT-0603R, Vf about 2.0 V), so R13 sets about (3.3 − 2.0) / 1 kΩ ≈ 1.3 mA: plainly visible and well inside the GPIO's drive. A green LED (Vf about 3 V) would get only about 0.2 mA through 1 kΩ and fade as the 3.3 V rail moves. Place LED1 at the rear edge so it's visible from behind the drone.
 
 ### 4.7 Test points (free, no parts)
 
@@ -379,9 +381,9 @@ Prices and basic/extended status change; **re-check every part number in JLC's l
 | C1-C5 | 100 nF 16 V X7R | 0402 | C1525 | Basic | 5 |
 | C6, C7 | 10 µF 10 V X5R | 0603 | C19702 | Basic | 2 |
 | C8-C12 | 22 µF 25 V X5R | 0805 | C45783 | Basic | 5 |
-| LED1 | Green LED | 0603 | C72043 (or red C2286) | **[VERIFY]**, both believed basic | 1 |
+| LED1 | Red LED, KENTO KT-0603R | 0603 | C2286 | Basic | 1 |
 
-That is **3 or 4 extended parts** (U1, Q5, and possibly U2 and LED1). Choosing XC6206 and a basic LED brings it down to 2.
+That is **2 or 3 extended parts** (U1, Q5, and possibly U2). Choosing XC6206 brings it down to 2.
 
 ### 8.2 Not assembled (you fit them)
 
@@ -399,7 +401,7 @@ That is **3 or 4 extended parts** (U1, Q5, and possibly U2 and LED1). Choosing X
 | --- | --- |
 | 5 x 2-layer PCB, 32 x 32 mm, standard specs | 2 to 5 |
 | Economic PCBA setup + stencil | about 9 |
-| Extended part fees, 2 to 4 parts at about 3 each | 6 to 12 |
+| Extended part fees, 2 to 3 parts at about 3 each | 6 to 9 |
 | Parts for 5 boards (IMU is the largest at a few dollars each) | 20 to 30 |
 | Shipping (cheapest option) | 5 to 20 |
 | **Total** | **about 45 to 75** |

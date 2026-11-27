@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/lehangajanayake/Projects/esp32-nano-fpv-drone/hardware/shield/shield.kicad_sch</source>
-    <date>2026-11-27T01:43:30</date>
+    <date>2026-11-27T18:49:27</date>
     <tool>Eeschema 10.0.7</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -614,16 +614,16 @@
       </units>
     </comp>
     <comp ref="LED1">
-      <value>Green</value>
+      <value>Red</value>
       <footprint>LED_SMD:LED_0603_1608Metric</footprint>
       <fields>
-        <field name="LCSC">C72043</field>
+        <field name="LCSC">C2286</field>
         <field name="Footprint">LED_SMD:LED_0603_1608Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="LCSC" value="C72043"/>
+      <property name="LCSC" value="C2286"/>
       <property name="Sheetname" value="shield"/>
       <property name="Sheetfile" value="shield.kicad_sch"/>
       <property name="ki_keywords" value="LED diode"/>

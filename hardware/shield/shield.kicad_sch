@@ -5778,11 +5778,11 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)) (justify right))
 		)
-		(property "Value" "Green"
+		(property "Value" "Red"
 			(at 365.76 181.61 90)
 			(show_name no)
 			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)) (justify right))
+			(effects (font (size 1.27 1.27)) (justify right) (hide no))
 		)
 		(property "Footprint" "LED_SMD:LED_0603_1608Metric"
 			(at 360.68 180.34 0)
@@ -5805,8 +5805,8 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "LCSC" "C72043"
-			(at 360.68 180.34 0)
+		(property "LCSC" "C2286"
+			(at 360.68 180.34 0.0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)

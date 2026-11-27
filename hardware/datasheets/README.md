@@ -13,10 +13,10 @@ Official datasheets and schematics for the parts in [shield/bom/shield-bom.csv](
 | SGM6029 buck regulator (SG Micro), on the XIAO ESP32-S3 itself, not on the shield | (XIAO U3) | — | [ics/sgm6029-buck-datasheet.pdf](ics/sgm6029-buck-datasheet.pdf) | https://www.sg-micro.com/product/SGM6029 |
 | AO3400A N-MOSFET (Alpha & Omega) | Q1, Q2, Q3, Q4 | C20917 | [discretes/ao3400a-nmos-datasheet.pdf](discretes/ao3400a-nmos-datasheet.pdf) | https://www.aosmd.com/res/datasheets/AO3400A.pdf |
 | DMP2008UFG-7 P-MOSFET (Diodes Inc) | Q5 | C461052 | [discretes/dmp2008ufg-pmos-datasheet.pdf](discretes/dmp2008ufg-pmos-datasheet.pdf) | https://www.diodes.com/assets/Datasheets/DMP2008UFG.pdf |
-| SS34 Schottky, SMA (MDD Microdiode) | D1, D2, D3, D4, D5 | C8678 | [discretes/ss34-mdd-schottky-datasheet.pdf](discretes/ss34-mdd-schottky-datasheet.pdf) | LCSC copy: https://datasheet.lcsc.com/datasheet/pdf/dfa1ff67dea875d0135103ba9ada713a.pdf?productCode=C8678 |
+| SS34 Schottky, SMA (MDD Microdiode) | D1, D2, D3, D4 | C8678 | [discretes/ss34-mdd-schottky-datasheet.pdf](discretes/ss34-mdd-schottky-datasheet.pdf) | LCSC copy: https://datasheet.lcsc.com/datasheet/pdf/dfa1ff67dea875d0135103ba9ada713a.pdf?productCode=C8678 |
 | 0402WGF thick film resistors, 100R / 100k / 10k / 1k (UNI-ROYAL); one series datasheet covers all four | R1-R4 / R5-R10 / R11, R12 / R13 | C25076, C25741, C25744, C11702 | [passives/uniroyal-0402wgf-thick-film-resistor-datasheet.pdf](passives/uniroyal-0402wgf-thick-film-resistor-datasheet.pdf) | LCSC copy: https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf?productCode=C25076 |
 | Samsung CL-series MLCC catalog: CL05B104KO5NNNC 100nF, CL10A106KP8NNNC 10uF, CL21A226MAQNNNE 22uF; one catalog covers all three | C1-C5 / C6, C7 / C8-C12 | C1525, C19702, C45783 | [passives/samsung-cl-series-mlcc-datasheet.pdf](passives/samsung-cl-series-mlcc-datasheet.pdf) | LCSC copy: https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf?productCode=C1525 |
-| 19-217/GHC-YR1S2/3T green 0603 LED (Everlight) | LED1 | C72043 | [passives/everlight-19-217-ghc-green-0603-led-datasheet.pdf](passives/everlight-19-217-ghc-green-0603-led-datasheet.pdf) | Distributor copy of the Everlight datasheet: https://static.maritex.eu/file/display/2ldXysqkk28M4k4Ae3otcBhTCCuB69C_/pdf |
+| KT-0603R red 0603 LED (Hubei KENTO) | LED1 | C2286 | not stored, link only | JLC copy: https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8763907065070653440 |
 
 ## Boards and modules
 
@@ -42,7 +42,7 @@ Official datasheets and schematics for the parts in [shield/bom/shield-bom.csv](
 - **ESP32-S3 Technical Reference Manual**: 15.2 MB, over the ~15 MB limit, so not stored. Get it from https://documentation.espressif.com/esp32-s3_technical_reference_manual_en.pdf.
 - **Seeed XIAO ESP32-S3 Series datasheet**: 29.7 MB, skipped. https://files.seeedstudio.com/wiki/XIAO/Seeed_Studio_XIAO_ESP32-S3_Series_Datasheet-26.11.3.pdf
 - **onsemi SS34**: onsemi's datasheet URL now redirects to a "not found" page, so only the MDD datasheet for the actual LCSC part (C8678) is stored.
-- **Everlight LED (C72043)**: LCSC has no datasheet file for this part and Mouser's copy is behind a bot check, so the stored file is a distributor copy of Everlight's own datasheet (Rev. 2).
+- **KENTO red LED (C2286)**: replaced the green Everlight 19-217/GHC (C72043) on 2026-11-27 because the green's ~3 V forward voltage leaves almost nothing across R13 at 3.3 V. Key figures (from JLC's listing): Vf 1.8–2.4 V, 20 mA max, 615–630 nm.
 - **ME6211, SS34, resistors and MLCCs**: these come from LCSC because the makers (Microne, MDD, UNI-ROYAL, Samsung) don't offer a stable direct link. The Samsung file is the general CL-series catalog; look up each part number in it.
 - The non-Sense XIAO nRF52840 pinout images and the KiCad/Eagle source zips on the Seeed wiki were not downloaded.
 - The XIAO ESP32S3 schematic and expansion board come in both the older revisions that were asked for (v1.2 / v1.0) and the current wiki revisions (v1.4 / v1.2). Check which revision your board is before reading pin details.
