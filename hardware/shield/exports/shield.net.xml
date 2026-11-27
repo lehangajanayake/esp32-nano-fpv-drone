@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/lehangajanayake/Projects/esp32-nano-fpv-drone/hardware/shield/shield.kicad_sch</source>
-    <date>2026-11-27T20:04:35</date>
+    <date>2026-11-27T21:07:37</date>
     <tool>Eeschema 10.0.7</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -98,9 +98,9 @@
   <components>
     <comp ref="BAT1">
       <value>BAT 1S</value>
-      <footprint>shield:BAT_Pads_3x4mm</footprint>
+      <footprint>shield:BAT_Pads_3x3.5mm</footprint>
       <fields>
-        <field name="Footprint">shield:BAT_Pads_3x4mm</field>
+        <field name="Footprint">shield:BAT_Pads_3x3.5mm</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
@@ -979,9 +979,9 @@
     </comp>
     <comp ref="MOT1">
       <value>MOTOR</value>
-      <footprint>shield:Motor_Pads_2x3mm</footprint>
+      <footprint>shield:Motor_Pads_2x2mm</footprint>
       <fields>
-        <field name="Footprint">shield:Motor_Pads_2x3mm</field>
+        <field name="Footprint">shield:Motor_Pads_2x2mm</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
@@ -1110,9 +1110,9 @@
     </comp>
     <comp ref="MOT2">
       <value>MOTOR</value>
-      <footprint>shield:Motor_Pads_2x3mm</footprint>
+      <footprint>shield:Motor_Pads_2x2mm</footprint>
       <fields>
-        <field name="Footprint">shield:Motor_Pads_2x3mm</field>
+        <field name="Footprint">shield:Motor_Pads_2x2mm</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
@@ -1241,9 +1241,9 @@
     </comp>
     <comp ref="MOT3">
       <value>MOTOR</value>
-      <footprint>shield:Motor_Pads_2x3mm</footprint>
+      <footprint>shield:Motor_Pads_2x2mm</footprint>
       <fields>
-        <field name="Footprint">shield:Motor_Pads_2x3mm</field>
+        <field name="Footprint">shield:Motor_Pads_2x2mm</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
@@ -1372,9 +1372,9 @@
     </comp>
     <comp ref="MOT4">
       <value>MOTOR</value>
-      <footprint>shield:Motor_Pads_2x3mm</footprint>
+      <footprint>shield:Motor_Pads_2x2mm</footprint>
       <fields>
-        <field name="Footprint">shield:Motor_Pads_2x3mm</field>
+        <field name="Footprint">shield:Motor_Pads_2x2mm</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>

@@ -59,7 +59,7 @@ The XIAO sits on top of the shield in two 7-pin female headers (its back and bat
 | XD-S6 | One low-side N-channel MOSFET per motor (AO3400A or similar) | Fully on from a 3.3 V gate; 5 A or more | Must |
 | XD-S7 | 100 ohm gate resistor and 100 kohm gate pull-down on every MOSFET | Motors never twitch during boot or reset | Must |
 | XD-S8 | Schottky flyback diode across each motor | Rated 2 A or more (the 720's peak), e.g. a 3 A part in SMA | Must |
-| XD-S9 | Motor solder pads, 2 per motor, with a strain-relief hole for the leads | Pads about 2 x 3 mm; labelled motor number and spin direction | Must |
+| XD-S9 | Motor solder pads, 2 per motor, with a strain-relief hole for the leads | Pads 2 x 2 mm at the board corners; labelled motor number and spin direction | Must |
 | XD-S10 | PWM frequency | 16 to 32 kHz from the ESP32 LEDC timers | Must |
 
 ### 3.3 IMU and power

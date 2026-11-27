@@ -2700,7 +2700,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "shield:BAT_Pads_3x4mm"
+		(property "Footprint" "shield:BAT_Pads_3x3.5mm"
 			(at 27.94 50.8 0)
 			(hide yes)
 			(show_name no)
