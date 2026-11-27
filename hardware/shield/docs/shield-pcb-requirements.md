@@ -352,7 +352,7 @@ Props-in (Betaflight default). Position and spin are as seen **looking down on t
 | M3 | Rear left | CCW | D2 | rear-**right** (pads along the rear edge) |
 | M4 | Front left | CW | D3 | front-**right** (pads in the front corner) |
 
-Silkscreen on the parts side (read from below the drone, so draw spin arrows as seen from below, i.e. reversed): board name and version (`XIAO FPV SHIELD v0.1`), a forward arrow, `M1` to `M4` with spin arrows and `+`/`-` at each motor, `BAT+` / `BAT-` (large), `1S ONLY`, `USB` at the rear, test point names, and the `JLCJLCJLCJLC` placeholder.
+Silkscreen as built: reference designators are hidden (they stay on the fab layers; JLC places parts from the CPL, not the silkscreen). **Parts side (F.SilkS, read from below):** `+`/`-` beside every motor pad pair, `M1` to `M4`, test-point names `VB` (TP1), `3V3` (TP2), `GND` (TP3), `5V` (TP4), `INT` (TP5). **Back (B.SilkS, mirrored so it reads from above the drone, visible around the XIAO):** `M1 CW`, `M2 CCW`, `M3 CCW`, `M4 CW` at each corner (spin as seen from above, so no reversed arrows needed), `BAT+` / `BAT-` under the battery pads, `1S ONLY`, `XIAO FPV SHIELD v0.1`, a `← FRONT` arrow and the `JLCJLCJLCJLC` order-number spot (8 x 0.8 mm, on the back because the top has no free 8 mm strip). No `USB` label: the USB-C is the XIAO's own rear edge.
 
 ---
 
