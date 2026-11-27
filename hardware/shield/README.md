@@ -1,6 +1,6 @@
 # Shield PCB
 
-The board the XIAO ESP32-S3 Sense plugs into (from below), carrying the four brushed motor drivers, the IMU, reverse polarity protection, battery sense and a status LED.
+The board the XIAO ESP32-S3 Sense plugs into (the XIAO sits on top, the shield's parts face down), carrying the four brushed motor drivers, the IMU, reverse polarity protection, battery sense and a status LED.
 
 **Start here:** [docs/shield-pcb-requirements.md](docs/shield-pcb-requirements.md). It holds the outline, stackup, design rules, net classes, placement rules, the full net list and the BOM.
 
@@ -30,7 +30,7 @@ The board the XIAO ESP32-S3 Sense plugs into (from below), carrying the four bru
 - Project libraries: `shield:DMP2008UFG` (copy of KiCad's DMP3013SFV, same PowerDI3333-8 pinout), `shield:LSM6DS3TR-C` (copy of KiCad's LSM6DS3, same LGA-14 pinout), and footprints `shield:BAT_Pads_3x4mm` and `shield:Motor_Pads_2x3mm` from sections 4.1 and 4.2.
 - NT1 uses KiCad's `NetTie:NetTie-2_SMD_Pad2.0mm` (the closest stock net tie to the 1.5 mm in section 6.2).
 - The sheet is A3 rather than A4 so the labels stay readable.
-- J1, J2, BAT1, MOT1 to MOT4, NT1, TP1 to TP5 and H1 to H4 are excluded from the BOM and position files; every assembled part has an `LCSC` field.
+- J1, J2, BAT1, MOT1 to MOT4, NT1, TP1 to TP5 are excluded from the BOM and position files; every assembled part has an `LCSC` field.
 
 Regenerate the exports after any schematic change (from this folder):
 

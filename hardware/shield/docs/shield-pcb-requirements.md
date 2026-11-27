@@ -4,7 +4,7 @@ Nov 26, 2026 · @Lehan · Status: **draft, ready for schematic capture**
 
 This document turns the system spec ([docs/requirements-budget-bom.md](../../../docs/requirements-budget-bom.md), IDs `XD-`) into rules detailed enough to draw the shield in KiCad. Requirement IDs here use the prefix **SH-** and name the `XD-` requirement they come from.
 
-The shield is a small 2-layer board. A Seeed XIAO ESP32-S3 Sense hangs **underneath** it in two female headers. The top side carries every SMD part: four brushed motor drivers, the IMU, its LDO, reverse polarity protection, bulk capacitors, the battery divider and a status LED. Motors and the battery pigtail solder to pads.
+The shield is a small 2-layer board. A Seeed XIAO ESP32-S3 Sense sits **on top of** it in two female headers, with its Sense camera board facing up and its back (battery pads) facing down onto the shield. The shield's parts side (KiCad top, F.Cu) faces **down**, away from the XIAO; the sockets are on the other side. That side carries every SMD part: four brushed motor drivers, the IMU, its LDO, reverse polarity protection, bulk capacitors, the battery divider and a status LED. Motors and the battery pigtail solder to pads.
 
 **Cheapest possible is a hard goal.** Every choice below is made to stay inside JLCPCB's cheapest options: 2 layers, standard specs, minimum quantity, one assembled side, Economic PCBA, and basic library parts wherever a basic part can do the job (each distinct extended part adds a setup fee per order).
 
@@ -19,10 +19,10 @@ These fill gaps the system spec left open, or change it for cost. Each is easy t
 | # | Decision | Why |
 | --- | --- | --- |
 | D1 | **XIAO power (XD-S15):** VBAT\_P feeds the XIAO's **BAT+ pad** through a short wire to shield pad **J3**. The XIAO's 5V pin is not powered by the shield (it only goes to TP4). | Seeed's v1.51 schematic shows the 5V pin (VBUS) reaches the XIAO's SGM6029 buck through an internal Schottky (D2, LMBR4010), while BAT+ reaches it through a P-FET (Q1, LP0404N3T5G, gate held by VBUS). The original plan (an SS34 into the 5V pin) put two diode drops in series, about 0.75 V, so the ESP32 fell below its 3.0 V minimum once the battery sagged under about 3.8 V. Through BAT+ the drop is about 0.05 V and the SGM6029 (1.95 to 5.5 V in, 100% duty cycle) passes the battery straight through, so the XIAO holds about 3.3 V down to a 3.4 V battery and stays near 2.9 V at a 3.1 V punch (test B7). Trade-off: with USB plugged in, the XIAO's SGM40567 charger charges the drone battery at 4.2 V, about 110 mA (test B4 changed to match). Decided 2026-11-27. |
-| D2 | **IMU LDO:** use **XC6206P332MR** (JLC basic, C5446) instead of ME6211C33 **if** ME6211 shows as an extended part on order day. | The IMU draws under 1 mA, so the XC6206's higher dropout costs nothing here, and a basic part avoids one setup fee. The footprints differ (SOT-23 vs SOT-23-5), so choose before layout. |
+| D2 | **IMU LDO: XC6206P332MR** (JLC basic, C5446, SOT-23) **with R14 = 22 Ω** in front of it. | The ME6211C33 (C82942) is an extended part (+$3 per order). The XC6206 alone rejects supply ripple poorly: its datasheet graph (3.0 V version, 1 mA) shows about 20 dB at 1 kHz, 16 dB at 2 to 3 kHz and 25 dB at 10 kHz, against the ME6211's 70 dB at 1 kHz. R14 (22 Ω) and C6 (10 µF) form a low-pass filter ahead of it: corner 1/(2π·22·10 µF) ≈ 720 Hz, or about 1.4 kHz with C6 derated to about 5 µF at 4 V. At the 16 to 32 kHz motor PWM (XD-S10) that adds about 21 to 33 dB, so roughly 45 to 55 dB in total. The IMU draws under 1 mA, so R14 drops about 20 mV and the XC6206's higher dropout costs nothing. Decided 2026-11-27. |
 | D3 | **Female headers (J1, J2) are hand-soldered by you**, not assembled by JLC. | Through-hole assembly at JLC adds a fee and a second process. 14 joints take five minutes. JLC then assembles SMD on the top side only. |
-| D4 | **Board 32 x 32 mm, 1.0 mm thick**, 4 x M2 mounting holes on a 26 x 26 mm square. | Leaves room for the corner motor drivers and keeps the board under about 2 g bare. JLC charges the same for 0.8 to 1.6 mm on 2-layer boards **[VERIFY in the quote]**. |
-| D5 | **XIAO orientation: back side (Sense board side) faces the shield**, USB-C pointing to the rear. | The Sense expansion board then sits in the gap under the shield, the U.FL and USB-C face down and out, and the USB-C can be reached from the rear (XD-S5). This depends on which side the XIAO's male pins come out of **[VERIFY, see 3.3]**. |
+| D4 | **Board about 26 x 26 mm, 1.0 mm thick, no mounting holes.** A 3D-printed snap-fit case holds it by its edges. | Removing the holes frees the corners for the motor drivers; 26 mm is the starting target and shrinks if placement leaves room. A board the XIAO's own size (21 x 17.8 mm) can't hold the parts: they need about 300 mm² before any routing, against about 250 mm² between the socket rows. JLC charges the same for 0.8 to 1.6 mm on 2-layer boards **[VERIFY in the quote]**. Changed 2026-11-27 (was 32 x 32 mm with 4 x M2 holes). |
+| D5 | **XIAO orientation: back side faces the shield, Sense board and camera on top**, USB-C pointing to the rear. | Seeed's pinout images (hardware/datasheets/boards/xiao-esp32s3/) show the Sense board plugs into the 30-pin connector on the XIAO's **front**, and BAT+/BAT− are on the **back**. Pre-soldered male pins come out of the back, so the back, with BAT+, faces the shield and the J3 wire is short (SH-P9). Corrected 2026-11-27 (earlier text wrongly put the Sense board on the back). |
 | D6 | **Two grounds joined at one point:** PGND (motor and battery current) and GND (XIAO, IMU, LDO, divider), joined by a net tie at the battery negative pad. | Implements XD-S17's single ground join in a way KiCad can check. |
 | D7 | Motor numbering and spin directions follow the Betaflight "props in" layout (table in 6.4). | A common convention; firmware can remap if ESP-Drone expects another order. |
 
@@ -40,7 +40,7 @@ These fill gaps the system spec left open, or change it for cost. Each is easy t
 | SH-M6 | Quantity | 5 boards (JLC minimum), 5 assembled (or 2, Economic PCBA allows assembling fewer than ordered) | XD BOM 7.2 |
 | SH-M7 | Assembly | **Economic PCBA, top side only, SMD only.** No parts on the bottom except the hand-soldered through-hole headers | cost |
 | SH-M8 | Order-number text | Add a silkscreen text `JLCJLCJLCJLC` on the top side in a free 8 x 1.5 mm spot, so JLC prints its order number there for free instead of in a random place | cost |
-| SH-M9 | Parts | Basic library parts wherever possible. Unavoidable extended parts: IMU (LSM6DS3TR-C), protection MOSFET (DMP2008UFG). Possibly the LDO (see D2, section 10) | cost |
+| SH-M9 | Parts | Basic library parts wherever possible. Unavoidable extended parts: IMU (LSM6DS3TR-C), protection MOSFET (DMP2008UFG). Everything else is basic (D2) | cost |
 | SH-M10 | Panel / rails | None. Single board. If JLC asks for edge rails because parts are close to the edge, add them in the order form (small fee) rather than redesigning | cost |
 
 ### 2.1 Design rules (enter these in KiCad Board Setup)
@@ -78,8 +78,8 @@ These sit just inside JLC's standard 2-layer capabilities, so nothing triggers a
 | Pin 1 / 14 distance from the USB-C end edge | about 2.88 mm (pins centred on the 21 mm length) | **[VERIFY]** |
 | USB-C | On the front (component) side, overhangs the USB end edge by about 1 to 1.5 mm | **[VERIFY]** |
 | U.FL antenna connector | Front side, near a corner | **[VERIFY]** exact corner |
-| Sense expansion board | Plugs into a 30-pin board-to-board connector (DF40C-30DP-0.4V) on the XIAO; holds the camera FPC connector and microSD slot | Seeed schematic |
-| Battery pads | Back side. **BAT+ is used**: a short wire to shield pad J3 (D1). BAT− is not needed, ground comes through pin 13. **[VERIFY]** BAT+ is reachable with the Sense board fitted | D1 |
+| Sense expansion board | Plugs into the 30-pin board-to-board connector (DF40C-30DP-0.4V) on the XIAO's **front**, over the shielded module; holds the camera FPC connector and microSD slot. Faces up, away from the shield | Seeed front pinout image, schematic |
+| Battery pads | **Back side**, facing the shield, level with D3/D2 on the D0 to D6 side: BAT+ about 4.3 mm in from that edge and 10.5 mm from the USB end, BAT− about 2 mm nearer the USB end. In board coordinates BAT+ is at about **(8.4, 10.5)**. **BAT+ is used**: a wire down to shield pad J3 (D1). BAT− is not needed, ground comes through pin 13. **[VERIFY]** position measured from Seeed's back pinout render; check on the real board | D1, Seeed back pinout image |
 
 Pin order (Seeed numbering, front view, USB-C pointing up):
 
@@ -99,59 +99,57 @@ All coordinates are in **shield top view**, in mm, origin at the **rear-left cor
 
 | ID | Requirement | Value | From |
 | --- | --- | --- | --- |
-| SH-O1 | Outline | 32.0 x 32.0 mm max, rectangle, 1 mm corner radius. May shrink once placement is done; must not grow | XD-A1, XD-A5 |
-| SH-O2 | XIAO position | XIAO centred on X = 16.0. Its **USB-C end edge on the shield's rear edge (Y = 0)**, so the USB-C receptacle sticks out about 1 to 1.5 mm behind the shield. The XIAO then covers Y = 0 to 21 | XD-S5 |
-| SH-O3 | Socket pad rows | X = 8.38 and X = 23.62 (16.0 ± 7.62). Pins at Y = 2.88, 5.42, 7.96, 10.50, 13.04, 15.58, 18.12 **[VERIFY with 3.1]** | XD-S1 |
-| SH-O4 | Socket pads | Through-hole, 1.0 mm drill, 1.7 mm round pad (pin 1 square). Use a standard `PinSocket_1x07_P2.54mm_Vertical` footprint placed on **B.Cu** (KiCad flips and mirrors it) | XD-S1 |
-| SH-O5 | Mounting holes | 4 x M2, 2.2 mm NPTH, at (3, 3), (29, 3), (3, 29), (29, 29). 4.5 mm diameter keep-out (no copper, no parts) around each on both layers | XD-A1 |
-| SH-O6 | Rear-edge notch | None needed; the shield edge stops at the XIAO's edge. Keep top-side parts at least 1 mm in from the rear edge between X = 9 and X = 23 so a USB-C plug overmould never touches them | XD-S5 |
-| SH-O7 | Board centre | (16, 16). The IMU goes here (SH-P1) and the frame's centre of thrust should line up with it | XD-S11 |
+| SH-O1 | Outline | **26.0 x 26.0 mm** target, rectangle, 1 mm corner radius. Shrink if placement leaves room; don't grow past 32 x 32 | XD-A1, XD-A5, D4 |
+| SH-O2 | XIAO position | XIAO centred on X = 13.0. Its **USB-C end edge on the shield's rear edge (Y = 0)**, so the USB-C receptacle sticks out about 1 to 1.5 mm behind the shield. The XIAO then covers X = 4.1 to 21.9, Y = 0 to 21 | XD-S5 |
+| SH-O3 | Socket pad rows | X = 5.38 and X = 20.62 (13.0 ± 7.62). Pins at Y = 2.88, 5.42, 7.96, 10.50, 13.04, 15.58, 18.12 **[VERIFY with 3.1]** | XD-S1 |
+| SH-O4 | Socket pads | Through-hole, 1.0 mm drill, 1.7 mm round pad (pin 1 square). Use a standard `PinSocket_1x07_P2.54mm_Vertical` footprint placed on **B.Cu** (the socket side, facing the XIAO; KiCad flips and mirrors it) | XD-S1 |
+| SH-O5 | Mounting | **No mounting holes** (D4). The printed case grips the board edges, so keep a 1 mm part-free border on both sides (SH-P13) | XD-A1 |
+| SH-O6 | Rear-edge notch | None needed; the shield edge stops at the XIAO's edge. Keep parts at least 1 mm in from the rear edge between X = 5 and X = 21 so a USB-C plug overmould never touches them | XD-S5 |
+| SH-O7 | Board centre | (13, 13). The IMU goes here (SH-P1) and the frame's centre of thrust should line up with it | XD-S11 |
 
-Rough area map (top view, forward is up):
+Rough area map (KiCad top view = parts side, seen from below the drone; forward is up, so left and right are mirrored compared with looking down on the drone, see 6.4):
 
 ```
- Y=32 +---------------------------------------------+
-      | (H3)  M4 pads              M2 pads    (H4) |   front corners: motor 4 (FL), motor 2 (FR)
-      |  Q4 D4 R4 R8                       Q2 D2 R2 R6 |
-      |  C10                               C11       |   front bulk caps
- Y=21 |- - - - -  front edge of XIAO (below) - - - - |
-      |  :J1:                                 :J2:   |
-      |  :  :        U1 IMU at (16,16)        :  :   |   J1 / J2 = socket pad rows
-      |  :  :        U2 LDO, C1-C7            :  :   |   at X = 8.38 and 23.62
-      |  :  :     R9 R10 C3 (divider)         :  :   |
-      |  Q3 D3                                Q1 D1  |
-      | (H1)  M3 pads  LED1 BAT+ BAT- Q5 C8 C9 M1 (H2)|  rear: battery pads, protection, bulk
- Y=0  +---------------------------------------------+
-      X=0            [ USB-C sticks out here ]       X=32
+ Y=26 +-----------------------------------+
+      |  M2 pads, Q2 D2      M4 pads, Q4 D4 |   front corners (KiCad view): M2 (FR), M4 (FL)
+      |  C10/C11, R2 R6      R4 R8          |   front strip, Y = 21 to 26
+ Y=21 |- - - front edge of XIAO (above) - - |
+      | :J1:                         :J2:  |   J1 / J2 = socket pad rows
+      | :  :  J3 (BAT+ wire)         :  :  |   at X = 5.38 and 20.62
+      | :  :     U1 IMU at (13,13)   :  :  |
+      | :  :  U2 LDO, R14, C1-C7     :  :  |
+      | :  :  R9 R10 C3 (divider)    :  :  |
+      |  M1 pads, Q1 D1      M3 pads, Q3 D3 |   rear corners (KiCad view): M1 (RR), M3 (RL)
+      |  LED1  BAT+ BAT-  Q5 C8 C9          |   rear: battery pads, protection, bulk
+ Y=0  +-----------------------------------+
+      X=0      [ USB-C sticks out here ]  X=26
 ```
 
-This is a starting point for placement, not a fixed layout. Which row is J1 and which is J2 depends on SH-O8.
+This is a starting point for placement, not a fixed layout. Parts may sit over the XIAO (they're on the far side of the shield from it); only the socket rows and J3 are fixed.
 
 ### 3.3 Orientation and mirroring (the easy mistake)
 
-The XIAO hangs below the shield, so the shield "sees" one side of the XIAO from above. Which side depends on which way its male pins point.
+The XIAO sits on top of the shield with its back facing down, and the shield's parts side faces down too. So looking at the parts side (KiCad's top view) you look the same way as at the XIAO's back face, and Seeed's back pinout image applies directly, rotated so USB-C is at the bottom.
 
 | ID | Requirement | From |
 | --- | --- | --- |
-| SH-O8 | **Assumed case (D5): XIAO back side (Sense board) faces the shield.** Male pins come out of the XIAO's back. In shield top view, forward up, USB-C at the rear: the **D0 to D6 row is on the left (X = 8.38)**, with D0 nearest the rear edge; the **5V to D7 row is on the right (X = 23.62)**, with 5V nearest the rear edge | XD-S1, XD-S4 |
-| SH-O9 | **Other case: XIAO front side faces the shield** (pins out of the front). Then the rows swap: D0 to D6 on the right, 5V to D7 on the left, again pin 1 and 14 at the rear. Only use this if the male pins on your XIAO point out of the front | — |
+| SH-O8 | **XIAO back side faces the shield** (D5). Male pins come out of the XIAO's back. In KiCad top view, forward up, USB-C at the rear: the **D0 to D6 row is on the left (X = 5.38)**, with D0 nearest the rear edge; the **5V to D7 row is on the right (X = 20.62)**, with 5V nearest the rear edge. Derived from Seeed's back pinout image (5V/GND/3V3/D10/D9/D8/D7 on the left and D0 to D6 on the right with USB-C up; rotated 180°) | XD-S1, XD-S4 |
+| SH-O9 | If a XIAO ever arrives with pins out of the front, it can't be used in this stack (the Sense board would face the shield); fit pins to the back instead | — |
 | SH-O10 | Before ordering, print the copper layers 1:1 on paper, push the XIAO's pins through at the socket positions in the orientation it will fly, and check that every label lines up | — |
-
-**[VERIFY]** Look at your pre-soldered XIAO Sense: if the pin headers' long ends come out of the same side as the Sense expansion board, use SH-O8. Also check that the Sense board fits between the two plastic header spacers, or sits above them.
 
 ### 3.4 Stack height and clearances
 
 | ID | Requirement | Value | From |
 | --- | --- | --- | --- |
 | SH-H1 | Female header | Standard 1 x 7, 2.54 mm, 8.5 mm body height | XD-S1 |
-| SH-H2 | Gap from shield underside to XIAO back | About 11 mm (8.5 mm socket + 2.5 mm male header spacer) | — |
-| SH-H3 | Total depth below the shield top surface | About 16 mm: 1.0 shield + 8.5 socket + 2.5 spacer + 1.0 XIAO PCB + about 3.2 USB-C | XD-S4 |
-| SH-H4 | Sense board in the gap | The Sense expansion board (with the camera unstuck from it) must fit in the 11 mm gap. **No parts and no copper-exposed features on the shield's bottom side inside the XIAO footprint** (X = 7.1 to 24.9, Y = 0 to 21), apart from the socket pins | XD-S4 |
-| SH-H5 | Camera | The OV2640 camera on its flex is moved to a frame mount **in front of the shield's front edge (Y > 32)**, tilted up 15 to 25 degrees, so the shield doesn't block the top of its view | XD-V10 |
-| SH-H6 | microSD slot | On the Sense board, facing the shield. Check the card can be pushed in from the side with the drone assembled; if not, it's only removed when the XIAO is pulled out (acceptable) | XD-S21 |
-| SH-H7 | U.FL antenna | On the XIAO front, facing down. Route the antenna flex away from the battery and motor leads; no shield change needed | XD-V8 |
-| SH-H8 | Top-side component height | 3 mm max (tallest is the SMA diode body, about 2.3 mm) so the frame or a printed cover can sit over it | XD-A1 |
-| SH-H9 | XIAO retention | Leave room for a printed clip or hot glue at both header ends (Y < 2 and Y > 19 on the bottom side, next to the sockets) | XD-S3 |
+| SH-H2 | Gap from shield socket side to XIAO back | About 11 mm (8.5 mm socket + 2.5 mm male header spacer). Nothing in it except the J3 wire; lower-profile sockets could shrink it later | — |
+| SH-H3 | Stack, bottom to top | Shield parts (3 mm max, SH-H8) + 1.0 shield + 8.5 socket + 2.5 spacer + 1.0 XIAO + Sense board and camera (about 15 mm with the XIAO, Seeed figure). USB-C sits at the rear of the XIAO layer | XD-S4 |
+| SH-H4 | Socket side under the XIAO | No parts on the socket side (SH-P14). Only socket pins, J3 and vias are exposed there. The XIAO's back has bare pads (MTDO, MTDI, MTCK, MTMS, EN, D+, D−, BAT−, a large centre pad); at 11 mm there's no short risk | XD-S4 |
+| SH-H5 | Camera | The camera stays on the Sense board on top of the stack, or moves on its flex to a forward frame mount tilted up 15 to 25 degrees (XD-V10). The shield is below the XIAO, so it never blocks the view | XD-V10 |
+| SH-H6 | microSD slot | On the Sense board, on top of the stack, facing away from the shield; reachable with the drone assembled if the case leaves an opening | XD-S21 |
+| SH-H7 | U.FL antenna | On the XIAO front, beside the Sense board, facing up. Route the antenna flex away from the battery and motor leads; no shield change needed | XD-V8 |
+| SH-H8 | Parts-side component height | 3 mm max (tallest is the SMA diode body, about 2.3 mm) so the case or battery can sit under it | XD-A1 |
+| SH-H9 | XIAO retention | The snap-fit case clamps the XIAO onto the sockets; leave room at both header ends (Y < 2 and Y > 19, socket side) for a clip or hot glue | XD-S3 |
 | SH-H10 | 3D check | Export the board STEP with the XIAO model and check it in the frame CAD before ordering | XD-S4 |
 
 ---
@@ -196,7 +194,7 @@ Test B7 (all motors at full while the supply drops to 3.0 V) is still the final 
 
 ### 4.4 IMU and its LDO (XD-S11, S12, S18, S22)
 
-- **U2** LDO (ME6211C33M5G-N, or XC6206P332MR per D2): input VBAT\_LDO, output +3V3\_IMU. ME6211: CE tied to VIN. **R14** 0 Ω (0402) links VBAT\_P to VBAT\_LDO ahead of the input caps: lift it to isolate a shorted LDO, IMU or input cap from the rest of the board, or to measure the IMU branch current with a meter across its pads. **C6** 10 µF + **C5** 100 nF at the input, **C7** 10 µF at the output.
+- **U2** LDO XC6206P332MR (D2), SOT-23: pin 3 VIN = VBAT\_LDO, pin 2 VOUT = +3V3\_IMU, pin 1 GND. **R14** 22 Ω (0402) links VBAT\_P to VBAT\_LDO ahead of the input caps. With C6 it is a low-pass filter that keeps motor ripple off the LDO input (D2). It also works as a link: lift it to isolate a shorted LDO, IMU or input cap from the rest of the board, or to measure the IMU branch current with a meter across its pads. **C6** 10 µF + **C5** 100 nF at the input, **C7** 10 µF at the output.
 - **U1** LSM6DS3TR-C, 4-wire SPI:
 
 | U1 pin | Name | Net |
@@ -222,6 +220,8 @@ Test B7 (all motors at full while the supply drops to 3.0 V) is still the final 
 Pin table checked against the LSM6DS3TR-C datasheet, table 2 "Pin description" (2026-11-27): SDx and SCx "connect to VDDIO or GND" in mode 1, pins 10 and 11 "leave unconnected".
 
 **Firmware note:** while CS is high the IMU listens for I2C on SCK and MOSI, and the Sense board's microSD shares those pins. Write `I2C_disable = 1` in CTRL4_C (13h) at start-up so SD card traffic can never be mistaken for I2C (datasheet section 6.1).
+
+**Firmware note:** the IMU is mounted upside down (the parts side faces down, SH-P1), with its X axis forward. Set a 180° roll board alignment.
 
 ### 4.5 Battery sense (XD-S16)
 
@@ -258,7 +258,7 @@ Net names are the ones to use in the schematic. This table is the design intent;
 | PWM1 to PWM4 | XIAO D0 to D3 (pins 1 to 4), R1 to R4 | SIGNAL |
 | GATE1 to GATE4 | R1 to R4, Q1 to Q4 gates, R5 to R8 | SIGNAL |
 | XIAO\_5V | XIAO pin 14 (5V, USB VBUS), TP4 | SIGNAL (probe only, no current) |
-| VBAT\_LDO | R14, U2 VIN (and CE on ME6211), C5, C6 | POWER\_LO |
+| VBAT\_LDO | R14, U2 VIN (pin 3), C5, C6 | POWER\_LO |
 | +3V3\_IMU | U2 VOUT, C7, U1 VDD and VDDIO, C1, C2, R11, TP2 | POWER\_LO |
 | VBAT\_SENSE | R9, R10, C3, XIAO D4 (pin 5) | SIGNAL |
 | IMU\_INT1 | U1 pin 4, XIAO D5 (pin 6), TP5 | SIGNAL |
@@ -322,42 +322,42 @@ Pads on POWER\_HI and MOTOR pours use **solid** zone connections (no thermal rel
 
 | ID | Rule | From |
 | --- | --- | --- |
-| SH-P1 | U1 (IMU) at the board centre (16, 16), its package edges parallel to the board edges, its X axis pointing forward (+Y board) **[VERIFY axis marking on the datasheet and note it in silkscreen]**. Nothing over 1 A within 5 mm of it; no motor or POWER\_HI copper on either layer under it | XD-S11 |
+| SH-P1 | U1 (IMU) at the board centre (13, 13), its package edges parallel to the board edges, its X axis pointing forward (+Y board) **[note it in silkscreen]**. The IMU is mounted upside down (parts side faces down), so firmware sets a 180° roll board alignment. Nothing over 1 A within 5 mm of it where it can be avoided; no motor or POWER\_HI copper on either layer under it | XD-S11 |
 | SH-P2 | U2 (LDO) and C5 to C7 within 5 mm of U1, on the GND side of the board. R14 on the VBAT\_P side of C5/C6, reachable with an iron | XD-S12 |
 | SH-P3 | C1 and C2 within 1 mm of U1's VDD and VDDIO pins | XD-S12 |
 | SH-P4 | SPI traces from the J2 pins to U1 under 15 mm, routed together over the GND pour, never parallel to a motor trace for more than 3 mm | XD-S22 |
-| SH-P5 | Each Qn, Dn, Rn, R(n+4) cluster within 6 mm of its motor pads (in the board corners outside the socket rows: X < 7 or X > 25). The loop VBAT\_P → motor pad → drain → Dn → VBAT\_P as small as possible | XD-S6, S8 |
+| SH-P5 | Each Qn, Dn, Rn, R(n+4) cluster within 6 mm of its motor pads, in its corner (6.4 gives the KiCad corner). The loop VBAT\_P → motor pad → drain → Dn → VBAT\_P as small as possible | XD-S6, S8 |
 | SH-P6 | Gate resistors Rn at the MOSFET end of the PWM trace, pull-downs R(n+4) at the MOSFET gate pin | XD-S7 |
-| SH-P7 | BAT1 pads on the rear edge, Q5 within 4 mm of them, C8 and C9 within 3 mm of Q5's source. BAT1 between X = 9 and 23 must leave the USB-C plug path behind the board clear (pads are on the top side, so they don't block it) | XD-S19, S14 |
+| SH-P7 | BAT1 pads on the rear edge, Q5 within 4 mm of them, C8 and C9 within 3 mm of Q5's source. BAT1 between X = 5 and 21 must leave the USB-C plug path behind the board clear | XD-S19, S14 |
 | SH-P8 | Q5 drain and source each on 30 mm² or more of copper (top), with 6 or more vias to matching bottom copper for heat spreading | XD-S20 |
-| SH-P9 | J3 just outside the XIAO footprint (SH-H4), as close as possible to where the XIAO's BAT+ pad sits, so the wire is short; C12 and C4 within 2 mm of J3. Its VBAT\_P branch comes off the trunk on the GND side, away from the motor branches **[VERIFY BAT+ pad position on the XIAO]** | XD-S15 |
+| SH-P9 | J3 directly under the XIAO's BAT+ pad, at about (8.4, 10.5) (3.1). Solder the wire to BAT+ with the XIAO out, plug the XIAO in with the wire through J3's hole, then solder it on the parts side. C12 and C4 within 2 mm of J3. Its VBAT\_P branch comes off the trunk away from the motor branches **[VERIFY BAT+ pad position on the real XIAO]** | XD-S15 |
 | SH-P10 | R9, R10, C3 near J1 pin 5, on the GND side, away from motor copper | XD-S16 |
 | SH-P11 | LED1 and R13 on the rear edge, not under the battery pigtail path | XD-S25 |
-| SH-P12 | Motor pads within 2 mm of the board edge, at the corner nearest their motor, clear of the mounting-hole keep-outs | XD-S9 |
-| SH-P13 | All SMD parts at least 1 mm from the board edge (JLC may otherwise ask for rails) | SH-M10 |
+| SH-P12 | Motor pads within 2 mm of the board edge, at the corner given in 6.4 | XD-S9 |
+| SH-P13 | All SMD parts at least 1 mm from the board edge, which also leaves the case's snap-fit lip clear (SH-O5) | SH-M10 |
 | SH-P14 | No parts on B.Cu except J1 and J2 bodies | SH-M7 |
 
 ### 6.4 Motor positions and silkscreen
 
-Props-in (Betaflight default). Viewed from above, forward up.
+Props-in (Betaflight default). Position and spin are as seen **looking down on the drone**, forward up. KiCad shows the parts side, which faces down, so its left and right are swapped: use the last column when placing.
 
-| Motor | Position | Spin | PWM pin | Pad location |
+| Motor | Position (drone, from above) | Spin | PWM pin | Corner in KiCad top view |
 | --- | --- | --- | --- | --- |
-| M1 | Rear right | CW | D0 | rear-right corner |
-| M2 | Front right | CCW | D1 | front-right corner |
-| M3 | Rear left | CCW | D2 | rear-left corner |
-| M4 | Front left | CW | D3 | front-left corner |
+| M1 | Rear right | CW | D0 | rear-**left** |
+| M2 | Front right | CCW | D1 | front-**left** |
+| M3 | Rear left | CCW | D2 | rear-**right** |
+| M4 | Front left | CW | D3 | front-**right** |
 
-Silkscreen on the top side: board name and version (`XIAO FPV SHIELD v0.1`), a forward arrow, `M1` to `M4` with spin arrows and `+`/`-` at each motor, `BAT+` / `BAT-` (large), `1S ONLY`, `USB` at the rear, test point names, and the `JLCJLCJLCJLC` placeholder.
+Silkscreen on the parts side (read from below the drone, so draw spin arrows as seen from below, i.e. reversed): board name and version (`XIAO FPV SHIELD v0.1`), a forward arrow, `M1` to `M4` with spin arrows and `+`/`-` at each motor, `BAT+` / `BAT-` (large), `1S ONLY`, `USB` at the rear, test point names, and the `JLCJLCJLCJLC` placeholder.
 
 ---
 
 ## 7. Schematic structure for KiCad
 
-One A4 sheet is enough. Suggested blocks, left to right: battery input and protection, motor drivers x 4, XIAO sockets, XIAO power, IMU + LDO, battery sense, status LED, test points and mounting holes.
+One A4 sheet is enough. Suggested blocks, left to right: battery input and protection, motor drivers x 4, XIAO sockets, XIAO power, IMU + LDO, battery sense, status LED, test points.
 
 - Put the JLC part number in a `LCSC` field on every assembled part (KiCad's JLC BOM export plug-ins read this field name).
-- Mark J1, J2, BAT1, MOT1 to MOT4, TP1 to TP5, NT1 and H1 to H4 as **Exclude from BOM** and **Exclude from position files**, so they don't appear in the JLC assembly files.
+- Mark J1, J2, BAT1, MOT1 to MOT4, TP1 to TP5 and NT1 as **Exclude from BOM** and **Exclude from position files**, so they don't appear in the JLC assembly files.
 - Assign net classes with net-class directives or the Board Setup net-class patterns (`MOT*_N`, `SPI_*`, and so on).
 
 ---
@@ -371,7 +371,7 @@ Prices and basic/extended status change; **re-check every part number in JLC's l
 | Ref | Value | Package | JLC # | JLC type | Qty |
 | --- | --- | --- | --- | --- | --- |
 | U1 | LSM6DS3TR-C IMU | LGA-14 2.5 x 3 mm | C967633 | Extended | 1 |
-| U2 | ME6211C33M5G-N, 3.3 V LDO (or XC6206P332MR, C5446, basic, SOT-23, per D2) | SOT-23-5 | C82942 | **[VERIFY]** | 1 |
+| U2 | XC6206P332MR-G, 3.3 V LDO (D2) | SOT-23 | C5446 | Basic | 1 |
 | Q1-Q4 | AO3400A N-MOSFET 30 V 5.7 A | SOT-23 | C20917 | Basic | 4 |
 | Q5 | DMP2008UFG-7 P-MOSFET 20 V 14 A | PowerDI3333-8 | C461052 | Extended | 1 |
 | D1-D4 | SS34 Schottky 40 V 3 A | SMA (DO-214AC) | C8678 | Basic | 4 |
@@ -379,13 +379,13 @@ Prices and basic/extended status change; **re-check every part number in JLC's l
 | R5-R10 | 100 kΩ 1% | 0402 | C25741 | Basic | 6 |
 | R11, R12 | 10 kΩ 1% | 0402 | C25744 | Basic | 2 |
 | R13 | 1 kΩ 1% | 0402 | C11702 | Basic | 1 |
-| R14 | 0 Ω jumper | 0402 | C17168 | Basic | 1 |
+| R14 | 22 Ω 1% (ripple filter and isolation link) | 0402 | C25092 | Basic | 1 |
 | C1-C5 | 100 nF 16 V X7R | 0402 | C1525 | Basic | 5 |
 | C6, C7 | 10 µF 10 V X5R | 0603 | C19702 | Basic | 2 |
 | C8-C12 | 22 µF 25 V X5R | 0805 | C45783 | Basic | 5 |
 | LED1 | Red LED, KENTO KT-0603R | 0603 | C2286 | Basic | 1 |
 
-That is **2 or 3 extended parts** (U1, Q5, and possibly U2). Choosing XC6206 brings it down to 2.
+That is **2 extended parts** (U1, Q5).
 
 ### 8.2 Not assembled (you fit them)
 
@@ -395,15 +395,14 @@ That is **2 or 3 extended parts** (U1, Q5, and possibly U2). Choosing XC6206 bri
 | — | Male headers on the XIAO | 2 x 7 | Come pre-soldered on the "pre-soldered" XIAO |
 | — | Battery pigtail (A30 or BT2.0, 20 AWG) | 1 | Soldered to BAT1 (XD-B3) |
 | J3 wire | 26 to 28 AWG silicone wire, about 15 mm | 1 | XIAO BAT+ pad to J3 (section 4.3); unsolder it to pull the XIAO |
-| — | M2 screws or printed pins | 4 | For the frame |
 
 ### 8.3 Rough JLC cost (5 boards, all assembled)
 
 | Item | Approx. USD |
 | --- | --- |
-| 5 x 2-layer PCB, 32 x 32 mm, standard specs | 2 to 5 |
+| 5 x 2-layer PCB, about 26 x 26 mm, standard specs | 2 to 5 |
 | Economic PCBA setup + stencil | about 9 |
-| Extended part fees, 2 to 3 parts at about 3 each | 6 to 9 |
+| Extended part fees, 2 parts at about 3 each | about 6 |
 | Parts for 5 boards (IMU is the largest at a few dollars each) | 20 to 30 |
 | Shipping (cheapest option) | 5 to 20 |
 | **Total** | **about 45 to 75** |
@@ -447,11 +446,11 @@ hardware/
 
 Before the schematic is frozen:
 
-1. **Which side the XIAO's pins come out of**, and that the Sense board fits between or above the header spacers (SH-O8, SH-O9). This decides the mirroring of the whole socket footprint.
+1. ~~Which side the XIAO's pins come out of~~ **Settled from Seeed's pinout images 2026-11-27** (D5, SH-O8): back faces the shield. Still do the 1:1 paper check (SH-O10) before ordering.
 2. **XIAO row spacing (15.24 mm) and pin 1 position (about 2.88 mm from the USB-C end)** against Seeed's KiCad footprint or dimension drawing (SH-O3).
-3. **U.FL corner, USB-C overhang and the Sense board's height** in the 11 mm gap (SH-H2 to H7).
-4. ~~The XIAO's regulator (SGM6029) minimum input voltage~~ **Resolved 2026-11-27:** 1.95 V minimum with 100% duty cycle, but the 5V pin has an internal Schottky, so the feed moved to BAT+ (D1, section 4.3). Still to check: **where the BAT+ pad is and that a wire reaches it with the Sense board fitted** (SH-P9).
-5. **JLC basic or extended status and stock** for every part in 8.1, in particular ME6211 (decides D2) and the LED.
+3. **USB-C overhang and the stack height** with the Sense board on top (SH-H2, H3).
+4. ~~The XIAO's regulator (SGM6029) minimum input voltage~~ **Resolved 2026-11-27:** 1.95 V minimum with 100% duty cycle, but the 5V pin has an internal Schottky, so the feed moved to BAT+ (D1, section 4.3). Still to check: **the BAT+ pad position on a real XIAO** against the estimate in 3.1 (SH-P9).
+5. **JLC basic or extended status and stock** for every part in 8.1, in particular U1 and Q5, the two extended parts.
 6. **LSM6DS3TR-C pinout and axis marking** against the datasheet (4.4, SH-P1).
 7. **DMP2008UFG pinout** (source pins 1 to 3, gate 4, drain 5 to 8 and the pad) against the Diodes datasheet.
 8. **JLC capabilities and price** on the order day: 1.0 mm thickness at no extra cost, HASL OK for the 0.5 mm-pitch IMU, minimum PCBA board size, whether rails are needed.

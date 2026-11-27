@@ -2509,6 +2509,163 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Regulator_Linear:XC6206PxxxMR"
+			(pin_names
+				(offset 0.254)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "U"
+				(at -3.81 3.175 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "XC6206PxxxMR"
+				(at 0 3.175 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Package_TO_SOT_SMD:SOT-23-3"
+				(at 0 5.715 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+						(italic yes)
+					)
+				)
+			)
+			(property "Datasheet" "https://www.torexsemi.com/file/xc6206/XC6206.pdf"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Positive 60-250mA Low Dropout Regulator, Fixed Output, SOT-23"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "Torex LDO Voltage Regulator Fixed Positive"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "SOT?23?3*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "XC6206PxxxMR_0_1"
+				(rectangle
+					(start -5.08 1.905)
+					(end 5.08 -5.08)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "XC6206PxxxMR_1_1"
+				(pin power_in line
+					(at 0 -7.62 90)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_out line
+					(at 7.62 0 180)
+					(length 2.54)
+					(name "VO"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -7.62 0 0)
+					(length 2.54)
+					(name "VI"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x02")
@@ -4579,105 +4736,6 @@
 		)
 		(uuid "9418cf68-d38b-58bb-8d88-a50f2bb34747")
 	)
-	(symbol
-		(lib_id "Regulator_Linear:ME6211C33M5")
-		(at 53.34 241.3 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "e1c798df-5015-5ce6-ae0f-f1cc12abc282")
-		(property "Reference" "U2"
-			(at 53.34 234.95 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "ME6211C33M5G-N"
-			(at 53.34 233.426 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-5"
-			(at 53.34 241.3 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 53.34 241.3 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 53.34 241.3 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C82942"
-			(at 53.34 241.3 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "421f79c1-362a-5298-aa81-4c1201d9d990")
-		)
-		(pin "2"
-			(uuid "69544774-2ce1-540b-beb6-e792f9da5fa7")
-		)
-		(pin "3"
-			(uuid "2b050c14-dccd-55b0-bce1-9551c1204fbb")
-		)
-		(pin "4"
-			(uuid "661a0898-1f02-5270-a0f4-8bc9ebadcf64")
-		)
-		(pin "5"
-			(uuid "872fa1db-4659-599c-97a7-e97d5c424952")
-		)
-		(instances
-			(project "shield"
-				(path "/c4d34b33-9949-5c0d-9c9c-2023448f4d41"
-					(reference "U2")
-					(unit 1)
-				)
-			)
-		)
-	)
 	(wire
 		(pts
 			(xy 45.72 238.76) (xy 43.18 238.76)
@@ -4707,16 +4765,6 @@
 			(justify right bottom)
 		)
 		(uuid "4df0f6c9-dfbd-5a6a-997b-02b215294bf9")
-	)
-	(wire
-		(pts
-			(xy 45.72 241.3) (xy 43.18 241.3)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f930bfb0-ae88-51d8-ac04-c08f80e857ac")
 	)
 	(wire
 		(pts
@@ -7001,298 +7049,6 @@
 		)
 		(uuid "9b51a6ae-b117-56f4-8040-87ae054a70a6")
 	)
-	(symbol
-		(lib_id "Mechanical:MountingHole")
-		(at 283.21 246.38 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "4cb34537-1381-5996-aee4-00d56261cda5")
-		(property "Reference" "H1"
-			(at 283.21 241.3 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "M2"
-			(at 283.21 239.776 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2"
-			(at 283.21 246.38 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 283.21 246.38 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 283.21 246.38 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(instances
-			(project "shield"
-				(path "/c4d34b33-9949-5c0d-9c9c-2023448f4d41"
-					(reference "H1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Mechanical:MountingHole")
-		(at 308.61 246.38 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "d8941c4c-7b0d-5de8-91ab-3541dee5b5d5")
-		(property "Reference" "H2"
-			(at 308.61 241.3 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "M2"
-			(at 308.61 239.776 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2"
-			(at 308.61 246.38 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 308.61 246.38 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 308.61 246.38 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(instances
-			(project "shield"
-				(path "/c4d34b33-9949-5c0d-9c9c-2023448f4d41"
-					(reference "H2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Mechanical:MountingHole")
-		(at 334.01 246.38 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "6439844b-b5cc-52f6-a7f5-83db8fe2a4d5")
-		(property "Reference" "H3"
-			(at 334.01 241.3 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "M2"
-			(at 334.01 239.776 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2"
-			(at 334.01 246.38 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 334.01 246.38 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 334.01 246.38 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(instances
-			(project "shield"
-				(path "/c4d34b33-9949-5c0d-9c9c-2023448f4d41"
-					(reference "H3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Mechanical:MountingHole")
-		(at 359.41 246.38 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "f3968fd8-bc88-5c74-812a-ae2b227bdea9")
-		(property "Reference" "H4"
-			(at 359.41 241.3 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "M2"
-			(at 359.41 239.776 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2"
-			(at 359.41 246.38 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 359.41 246.38 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 359.41 246.38 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(instances
-			(project "shield"
-				(path "/c4d34b33-9949-5c0d-9c9c-2023448f4d41"
-					(reference "H4")
-					(unit 1)
-				)
-			)
-		)
-	)
 	(rectangle
 		(start 15 20)
 		(end 135 105)
@@ -7397,7 +7153,7 @@
 		)
 		(uuid "e9e68816-89bc-5213-8c49-d64c24844039")
 	)
-	(text "IMU and its LDO\nSH 4.4 / XD-S11, S12, S18, S22. 4-wire SPI. C1/C2 within 1 mm of VDD/VDDIO. R11 holds CS high during XIAO boot"
+	(text "IMU and its LDO\nSH 4.4 / XD-S11, S12, S18, S22. 4-wire SPI. C1/C2 within 1 mm of VDD/VDDIO. R11 holds CS high during XIAO boot.\nR14 22R + C6 = ripple filter ahead of U2 (D2)"
 		(exclude_from_sim no)
 		(at 16.27 206.27 0)
 		(effects
@@ -7466,7 +7222,7 @@
 		)
 		(uuid "9c04e07b-b0dd-564c-9931-2fe642d40653")
 	)
-	(text "Test points and mounting holes\nSH 4.7, SH-O5. 1.0 mm top pads; 4x M2 NPTH"
+	(text "Test points\nSH 4.7. 1.0 mm pads on the parts side.\nNo mounting holes: printed snap-fit case (SH-O5)"
 		(exclude_from_sim no)
 		(at 266.27 206.27 0)
 		(effects
@@ -8198,16 +7954,6 @@
 		(uuid "52f980ad-039b-452c-969d-4db7b8c5e57a")
 	)
 	(label "VBAT_LDO"
-		(at 43.18 241.3 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "1035ba27-584d-4fad-8075-d9f98814e8fa")
-	)
-	(label "VBAT_LDO"
 		(at 25.4 247.65 90)
 		(effects
 			(font
@@ -8238,7 +7984,7 @@
 				)
 			)
 		)
-		(property "Value" "0R"
+		(property "Value" "22R"
 			(at 30.48 228.6 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8246,6 +7992,7 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(hide no)
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
@@ -8281,7 +8028,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C17168"
+		(property "LCSC" "C25092"
 			(at 30.48 228.6 0)
 			(effects
 				(font
@@ -8357,73 +8104,188 @@
 		)
 		(uuid "7c762289-8f0b-4e50-8e7a-fc281911b040")
 	)
-	  (symbol (lib_id "power:PWR_FLAG") (at 34.29 228.6 0) (unit 1)
-    (body_style 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (in_pos_files yes) (dnp no)
-    (uuid "04ca7f21-7645-4377-935d-f70e59d3736a")
-    (property "Reference" "#FLG04"
-      (at 34.29 230.505 0)
-      (hide yes)
-      (show_name no)
-      (do_not_autoplace no)
-      (effects
-					(font
-						(size 1.27 1.27)
-					)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 34.29 228.6 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "04ca7f21-7645-4377-935d-f70e59d3736a")
+		(property "Reference" "#FLG04"
+			(at 34.29 230.505 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
 				)
-    )
-    (property "Value" "PWR_FLAG"
-      (at 34.29 232.41 0)
-      (show_name no)
-      (do_not_autoplace no)
-      (effects
-					(font
-						(size 1.27 1.27)
-					) (hide yes))
-    )
-    (property "Footprint" ""
-      (at 34.29 228.6 0)
-      (hide yes)
-      (show_name no)
-      (do_not_autoplace no)
-      (effects
-					(font
-						(size 1.27 1.27)
-					)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 34.29 232.41 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
 				)
-    )
-    (property "Datasheet" ""
-      (at 34.29 228.6 0)
-      (hide yes)
-      (show_name no)
-      (do_not_autoplace no)
-      (effects
-					(font
-						(size 1.27 1.27)
-					)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 34.29 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
 				)
-    )
-    (property "Description" "Special symbol for telling ERC where power comes from"
-      (at 34.29 228.6 0)
-      (hide yes)
-      (show_name no)
-      (do_not_autoplace no)
-      (effects
-					(font
-						(size 1.27 1.27)
-					)
+			)
+		)
+		(property "Datasheet" ""
+			(at 34.29 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
 				)
-    )
-    (pin "1" (uuid "6121b601-5062-4791-b437-adbd20c0ad90"))
-    (instances
-      (project "shield"
-        (path "/c4d34b33-9949-5c0d-9c9c-2023448f4d41"
-          (reference "#FLG04")
-          (unit 1)
-        )
-      )
-    )
-  )
-  (sheet_instances
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 34.29 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "6121b601-5062-4791-b437-adbd20c0ad90")
+		)
+		(instances
+			(project "shield"
+				(path "/c4d34b33-9949-5c0d-9c9c-2023448f4d41"
+					(reference "#FLG04")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Regulator_Linear:XC6206PxxxMR")
+		(at 53.34 238.76 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "ff3f45e9-7ad6-4207-ab0f-f933ad60e936")
+		(property "Reference" "U2"
+			(at 53.34 231.14 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "XC6206P332MR"
+			(at 53.34 233.68 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-3"
+			(at 53.34 244.475 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.torexsemi.com/file/xc6206/XC6206.pdf"
+			(at 53.34 238.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Positive 60-250mA Low Dropout Regulator, Fixed Output, SOT-23"
+			(at 53.34 238.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C5446"
+			(at 53.34 238.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c9e354fe-be3a-40f5-b92d-9d54898fbabf")
+		)
+		(pin "2"
+			(uuid "4dd95c0b-2739-410c-8665-b8cc30103957")
+		)
+		(pin "3"
+			(uuid "ea4b2b03-5e32-4a26-82d3-67e33e37cbcb")
+		)
+		(instances
+			(project "shield"
+				(path "/c4d34b33-9949-5c0d-9c9c-2023448f4d41"
+					(reference "U2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 53.34 246.38) (xy 53.34 248.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "84fdc0ce-3fcd-42f9-b3e5-8737d6d42c88")
+	)
+	(sheet_instances
 		(path "/"
 			(page "1")
 		)

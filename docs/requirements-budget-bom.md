@@ -40,13 +40,13 @@ A 720 motor is a 7 x 20 mm brushed coreless motor for 1S; listings give about 3 
 
 ## 3. Shield requirements
 
-The XIAO plugs into two 7-pin female headers on the shield's underside, so it can be pulled out for flashing, swapping or repair; the Sense camera is mounted facing forward (XD-V10).
+The XIAO sits on top of the shield in two 7-pin female headers (its back and battery pads facing the shield, Sense camera board on top), so it can be pulled out for flashing, swapping or repair; the Sense camera is mounted facing forward (XD-V10).
 
 ### 3.1 Connection to the XIAO
 
 | ID | Requirement | Target | Priority |
 | --- | --- | --- | --- |
-| XD-S1 | Two 1 x 7 female headers, 2.54 mm pitch, on the underside, matching the XIAO's edge pins | XIAO plugs in with no soldering on the shield side | Must |
+| XD-S1 | Two 1 x 7 female headers, 2.54 mm pitch, on the shield's upper (socket) side, matching the XIAO's edge pins | XIAO plugs in with no soldering on the shield side | Must |
 | XD-S2 | XIAO fitted with male pin headers (bought pre-soldered, or soldered once) | Seats fully in the sockets | Must |
 | XD-S3 | XIAO held against vibration | Printed clip or a dab of hot glue on the header ends | Must |
 | XD-S4 | Forward-facing camera mount and clearance for the Sense camera board and the Wi-Fi antenna | Checked with a 3D model before ordering | Must |
@@ -68,7 +68,7 @@ The XIAO plugs into two 7-pin female headers on the shield's underside, so it ca
 | --- | --- | --- | --- |
 | XD-S11 | 6-axis IMU (LSM6DS3TR-C) on SPI, near the shield's centre, aligned with the board edges, away from motor traces | Gyro up to 2000 dps | Must |
 | XD-S18 | IMU INT1 (data-ready) wired to XIAO pin D5 (GPIO6); the flight loop is timed from this interrupt instead of polling | One interrupt per gyro sample, no missed samples | Must |
-| XD-S12 | 3.3 V LDO (ME6211C33) for the IMU only; never tied to the XIAO's 3V3 pin | 10 uF in and out, 100 nF at the IMU | Must |
+| XD-S12 | 3.3 V LDO (XC6206P332, behind a 22 ohm / 10 uF ripple filter) for the IMU only; never tied to the XIAO's 3V3 pin | 10 uF in and out, 100 nF at the IMU | Must |
 | XD-S13 | Battery solder pads only, no connector on the shield, so any pack or pigtail can be fitted later; options in section 5 | Rated 10 A peak | Must |
 | XD-S19 | Reverse polarity protection right after the battery pads: a P-channel MOSFET (DMP2008UFG) in the positive lead, drain to the battery pad, source to the protected rail (VBAT\_P), gate to ground through 10 kohm. Everything else (motors, LDO, XIAO, divider, bulk caps) runs from VBAT\_P | Reversed pack draws no current and damages nothing; forward drop under 100 mV at 8 A (9.8 mohm max at 2.5 V gate drive) | Must |
 | XD-S20 | Protection MOSFET sits on a copper pour on both drain and source sides to spread heat; only 1S packs are ever fitted (its gate is rated ±8 V, a 2S pack would exceed it) | Under 0.7 W at the 8 A peak, about 0.25 W at hover | Must |
@@ -223,7 +223,7 @@ Two lists: what JLC assembles onto each shield, and what you buy and fit yoursel
 | Designator | Part | Value / type | JLC part # | Qty | Package |
 | --- | --- | --- | --- | --- | --- |
 | U1 | IMU | ST LSM6DS3TR-C | C967633 (matched) | 1 | LGA-14 2.5 x 3 mm |
-| U2 | 3.3 V LDO | ME6211C33M5G-N | C82942 (matched) | 1 | SOT-23-5 |
+| U2 | 3.3 V LDO | XC6206P332MR-G | C5446 (basic) | 1 | SOT-23 |
 | Q1-Q4 | Motor MOSFET | AO3400A, 30 V | C20917 (matched) | 4 | SOT-23 |
 | D1-D4 | Flyback diode | Schottky, 3 A 40 V (e.g. SS34) | pick in JLC library | 4 | SMA |
 | R1-R4 | Gate resistor | 100 ohm | basic part | 4 | 0402 |
@@ -238,7 +238,7 @@ Two lists: what JLC assembles onto each shield, and what you buy and fit yoursel
 | R12 | Q5 gate to ground | 10 kohm | basic part | 1 | 0402 |
 | LED1 | Status LED | Red, 0603 (KENTO KT-0603R, Vf about 2 V, about 1.3 mA with R13) | C2286 (basic) | 1 | 0603 |
 | R13 | LED1 series resistor | 1 kohm | basic part | 1 | 0402 |
-| R14 | IMU LDO feed link (lift to isolate the IMU branch) | 0 ohm | C17168 (basic) | 1 | 0402 |
+| R14 | IMU LDO feed: ripple filter with C6, and a link you can lift to isolate the IMU branch | 22 ohm | C25092 (basic) | 1 | 0402 |
 | J1-J2 | XIAO sockets | 1 x 7 female header, 2.54 mm | pick in JLC library | 2 | Through-hole |
 | — | Motor pads, battery pads | copper pads only | — | — | — |
 
