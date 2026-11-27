@@ -39,7 +39,7 @@ These fill gaps the system spec left open, or change it for cost. Each is easy t
 | SH-M5 | Solder mask / silkscreen | Green / white | cost |
 | SH-M6 | Quantity | 5 boards (JLC minimum), 5 assembled (or 2, Economic PCBA allows assembling fewer than ordered) | XD BOM 7.2 |
 | SH-M7 | Assembly | **Economic PCBA, top side only, SMD only.** Nothing assembled on the bottom; it has only the hand-soldered sockets and bare copper pads (BAT1, NT1) | cost |
-| SH-M8 | Order-number text | Add a silkscreen text `JLCJLCJLCJLC` on the top side in a free 8 x 1.5 mm spot, so JLC prints its order number there for free instead of in a random place | cost |
+| SH-M8 | Order-number text | Add a silkscreen text `JLCJLCJLCJLC` in a free, via-free 8 x 1.5 mm spot (as built: back side, between the sockets), so JLC prints its order number there for free instead of in a random place | cost |
 | SH-M9 | Parts | Basic library parts wherever possible. Unavoidable extended parts: IMU (LSM6DS3TR-C), protection MOSFET (DMP2008UFG). Everything else is basic (D2) | cost |
 | SH-M10 | Panel / rails | None. Single board. If JLC asks for edge rails because parts are close to the edge, add them in the order form (small fee) rather than redesigning | cost |
 
@@ -309,7 +309,7 @@ Widths are for 1 oz outer copper using IPC-2221 (external layer). The 8 A figure
 | MOTOR | MOT1\_N to MOT4\_N, VBAT\_P branch to each motor | 2 A peak per motor | **1.0 mm** (about 10 °C rise at 2 A); 1.5 mm where room allows | 0.2 mm | 0.4/0.8 mm, at least 3 per layer change |
 | POWER\_LO | VBAT\_P branch to J3 / C12 / C4 (XIAO supply), VBAT\_LDO, +3V3\_IMU | 0.5 A / 0.01 A | 0.5 mm / 0.3 mm | 0.15 mm | 0.3/0.6 mm, 2 per layer change on the J3 branch |
 | SPI | SPI\_SCK, SPI\_MISO, SPI\_MOSI, IMU\_CS | 10 MHz | 0.2 mm | 0.15 mm (0.3 mm to motor nets) | 0.3/0.6 mm |
-| SIGNAL | PWMn, GATEn, Q5\_G, VBAT\_SENSE, IMU\_INT1, LED\_STAT, LED\_A | mA | 0.2 mm | 0.15 mm | 0.3/0.6 mm |
+| SIGNAL | PWMn, GATEn, Q5\_G, VBAT\_SENSE, IMU\_INT1, LED\_STAT, LED\_A, XIAO\_5V | mA | 0.15 mm, uniform (was 0.2; the longest, PWM4 at 29 mm, is about 0.1 ohm against its 100 ohm gate resistor, so no measurable effect, and 0.15 fits every squeeze point) | 0.15 mm | 0.3/0.6 mm |
 | SIGNAL\_GND | GND | 0.5 A | Pour; 0.5 mm min where traced | 0.15 mm | 0.3/0.6 mm |
 
 Pads on POWER\_HI and MOTOR pours use **solid** zone connections (no thermal relief) on Q5, Q1 to Q4 sources and drains, the bulk caps and the battery and motor pads. The through-hole socket pins use **thermal reliefs** so they're easy to hand-solder.
@@ -352,7 +352,7 @@ Props-in (Betaflight default). Position and spin are as seen **looking down on t
 | M3 | Rear left | CCW | D2 | rear-**right** (pads along the rear edge) |
 | M4 | Front left | CW | D3 | front-**right** (pads in the front corner) |
 
-Silkscreen as built: reference designators are hidden (they stay on the fab layers; JLC places parts from the CPL, not the silkscreen). **Parts side (F.SilkS, read from below):** `+`/`-` beside every motor pad pair, `M1` to `M4`, test-point names `VB` (TP1), `3V3` (TP2), `GND` (TP3), `5V` (TP4), `INT` (TP5). **Back (B.SilkS, mirrored so it reads from above the drone, visible around the XIAO):** `M1 CW`, `M2 CCW`, `M3 CCW`, `M4 CW` at each corner (spin as seen from above, so no reversed arrows needed), `BAT+` / `BAT-` under the battery pads, `1S ONLY`, `XIAO FPV SHIELD v0.1`, a `← FRONT` arrow and the `JLCJLCJLCJLC` order-number spot (8 x 0.8 mm, on the back because the top has no free 8 mm strip). No `USB` label: the USB-C is the XIAO's own rear edge.
+Silkscreen as built: reference designators are hidden (they stay on the fab layers; JLC places parts from the CPL, not the silkscreen). **Parts side (F.SilkS, read from below):** `+`/`-` beside every motor pad pair, `M1` to `M4`, test-point names `VB` (TP1), `3V3` (TP2), `GND` (TP3), `5V` (TP4), `INT` (TP5), `XIAO BAT+` beside J3 (also on the back) so the wire from the XIAO's BAT+ pad goes through the right hole. **Back (B.SilkS, mirrored so it reads from above the drone, visible around the XIAO):** `M1 CW`, `M2 CCW`, `M3 CCW`, `M4 CW` at each corner (spin as seen from above, so no reversed arrows needed), `BAT+` / `BAT-` under the battery pads, `1S ONLY`, `XIAO FPV SHIELD v0.1`, a `← FRONT` arrow and the `JLCJLCJLCJLC` order-number spot (8.5 x 0.8 mm, on the back between the sockets at KiCad (114.6, 124.7), clear of vias; the XIAO covers it once fitted, which is fine for an order number). No `USB` label: the USB-C is the XIAO's own rear edge.
 
 ---
 
