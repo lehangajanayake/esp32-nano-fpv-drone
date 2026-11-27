@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/lehangajanayake/Projects/esp32-nano-fpv-drone/hardware/shield/shield.kicad_sch</source>
-    <date>2026-11-26T15:41:58</date>
+    <date>2026-11-27T21:07:37</date>
     <tool>Eeschema 10.0.7</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -22,13 +22,85 @@
         <comment number="9" value=""/>
       </title_block>
     </sheet>
+    <sheet number="2" name="/Motor1/" tstamps="/5a85dd7f-0cdb-5070-ad7c-0f1de1612efc/">
+      <title_block>
+        <title>XIAO FPV shield: motor driver channel</title>
+        <company/>
+        <rev>0.1</rev>
+        <date>2026-11-26</date>
+        <source>motor_driver.kicad_sch</source>
+        <comment number="1" value="Source of truth: docs/shield-pcb-requirements.md section 4.2"/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="3" name="/Motor2/" tstamps="/4ab62b34-8ed6-5300-bd4f-a99630f8ac3e/">
+      <title_block>
+        <title>XIAO FPV shield: motor driver channel</title>
+        <company/>
+        <rev>0.1</rev>
+        <date>2026-11-26</date>
+        <source>motor_driver.kicad_sch</source>
+        <comment number="1" value="Source of truth: docs/shield-pcb-requirements.md section 4.2"/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="4" name="/Motor3/" tstamps="/81c35721-1ee2-5e4a-942d-74daf08dc1fd/">
+      <title_block>
+        <title>XIAO FPV shield: motor driver channel</title>
+        <company/>
+        <rev>0.1</rev>
+        <date>2026-11-26</date>
+        <source>motor_driver.kicad_sch</source>
+        <comment number="1" value="Source of truth: docs/shield-pcb-requirements.md section 4.2"/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+    <sheet number="5" name="/Motor4/" tstamps="/4e974f51-a80e-55af-be3b-618de22c8e7f/">
+      <title_block>
+        <title>XIAO FPV shield: motor driver channel</title>
+        <company/>
+        <rev>0.1</rev>
+        <date>2026-11-26</date>
+        <source>motor_driver.kicad_sch</source>
+        <comment number="1" value="Source of truth: docs/shield-pcb-requirements.md section 4.2"/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
   </design>
   <components>
     <comp ref="BAT1">
       <value>BAT 1S</value>
-      <footprint>shield:BAT_Pads_3x4mm</footprint>
+      <footprint>shield:BAT_Pads_3x3.5mm</footprint>
       <fields>
-        <field name="Footprint">shield:BAT_Pads_3x4mm</field>
+        <field name="Footprint">shield:BAT_Pads_3x3.5mm</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
@@ -362,228 +434,6 @@
         </unit>
       </units>
     </comp>
-    <comp ref="D1">
-      <value>SS34</value>
-      <footprint>Diode_SMD:D_SMA</footprint>
-      <fields>
-        <field name="LCSC">C8678</field>
-        <field name="Footprint">Diode_SMD:D_SMA</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Device" part="D_Schottky" description="Schottky diode"/>
-      <property name="LCSC" value="C8678"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="ki_keywords" value="diode Schottky"/>
-      <property name="ki_fp_filters" value="TO-???* *_Diode_* *SingleDiode* D_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>d2b3491d-9deb-5d27-9000-875b98aa7b44</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="D2">
-      <value>SS34</value>
-      <footprint>Diode_SMD:D_SMA</footprint>
-      <fields>
-        <field name="LCSC">C8678</field>
-        <field name="Footprint">Diode_SMD:D_SMA</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Device" part="D_Schottky" description="Schottky diode"/>
-      <property name="LCSC" value="C8678"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="ki_keywords" value="diode Schottky"/>
-      <property name="ki_fp_filters" value="TO-???* *_Diode_* *SingleDiode* D_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>59f88d21-6de9-5d61-bb79-c82a3beca70e</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="D3">
-      <value>SS34</value>
-      <footprint>Diode_SMD:D_SMA</footprint>
-      <fields>
-        <field name="LCSC">C8678</field>
-        <field name="Footprint">Diode_SMD:D_SMA</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Device" part="D_Schottky" description="Schottky diode"/>
-      <property name="LCSC" value="C8678"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="ki_keywords" value="diode Schottky"/>
-      <property name="ki_fp_filters" value="TO-???* *_Diode_* *SingleDiode* D_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>351eb66a-7d3f-5ad0-bdc7-35a471d6dbb1</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="D4">
-      <value>SS34</value>
-      <footprint>Diode_SMD:D_SMA</footprint>
-      <fields>
-        <field name="LCSC">C8678</field>
-        <field name="Footprint">Diode_SMD:D_SMA</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Device" part="D_Schottky" description="Schottky diode"/>
-      <property name="LCSC" value="C8678"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="ki_keywords" value="diode Schottky"/>
-      <property name="ki_fp_filters" value="TO-???* *_Diode_* *SingleDiode* D_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>65f0f935-847e-5300-ad7c-250246ba5852</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="D5">
-      <value>SS34</value>
-      <footprint>Diode_SMD:D_SMA</footprint>
-      <fields>
-        <field name="LCSC">C8678</field>
-        <field name="Footprint">Diode_SMD:D_SMA</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Device" part="D_Schottky" description="Schottky diode"/>
-      <property name="LCSC" value="C8678"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="ki_keywords" value="diode Schottky"/>
-      <property name="ki_fp_filters" value="TO-???* *_Diode_* *SingleDiode* D_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>38a37725-6881-58ee-8df1-b91a39b4cd18</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="H1">
-      <value>M2</value>
-      <footprint>MountingHole:MountingHole_2.2mm_M2</footprint>
-      <fields>
-        <field name="Footprint">MountingHole:MountingHole_2.2mm_M2</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Mechanical" part="MountingHole" description="Mounting Hole without connection"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="exclude_from_bom"/>
-      <property name="exclude_from_pos_files"/>
-      <property name="ki_keywords" value="mounting hole"/>
-      <property name="ki_fp_filters" value="MountingHole*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>4cb34537-1381-5996-aee4-00d56261cda5</tstamps>
-      <units>
-        <unit name="A">
-          <pins/>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="H2">
-      <value>M2</value>
-      <footprint>MountingHole:MountingHole_2.2mm_M2</footprint>
-      <fields>
-        <field name="Footprint">MountingHole:MountingHole_2.2mm_M2</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Mechanical" part="MountingHole" description="Mounting Hole without connection"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="exclude_from_bom"/>
-      <property name="exclude_from_pos_files"/>
-      <property name="ki_keywords" value="mounting hole"/>
-      <property name="ki_fp_filters" value="MountingHole*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>d8941c4c-7b0d-5de8-91ab-3541dee5b5d5</tstamps>
-      <units>
-        <unit name="A">
-          <pins/>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="H3">
-      <value>M2</value>
-      <footprint>MountingHole:MountingHole_2.2mm_M2</footprint>
-      <fields>
-        <field name="Footprint">MountingHole:MountingHole_2.2mm_M2</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Mechanical" part="MountingHole" description="Mounting Hole without connection"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="exclude_from_bom"/>
-      <property name="exclude_from_pos_files"/>
-      <property name="ki_keywords" value="mounting hole"/>
-      <property name="ki_fp_filters" value="MountingHole*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>6439844b-b5cc-52f6-a7f5-83db8fe2a4d5</tstamps>
-      <units>
-        <unit name="A">
-          <pins/>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="H4">
-      <value>M2</value>
-      <footprint>MountingHole:MountingHole_2.2mm_M2</footprint>
-      <fields>
-        <field name="Footprint">MountingHole:MountingHole_2.2mm_M2</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Mechanical" part="MountingHole" description="Mounting Hole without connection"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="exclude_from_bom"/>
-      <property name="exclude_from_pos_files"/>
-      <property name="ki_keywords" value="mounting hole"/>
-      <property name="ki_fp_filters" value="MountingHole*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>f3968fd8-bc88-5c74-812a-ae2b227bdea9</tstamps>
-      <units>
-        <unit name="A">
-          <pins/>
-        </unit>
-      </units>
-    </comp>
     <comp ref="J1">
       <value>XIAO 1-7 (D0-D6)</value>
       <footprint>Connector_PinSocket_2.54mm:PinSocket_1x07_P2.54mm_Vertical</footprint>
@@ -646,127 +496,48 @@
         </unit>
       </units>
     </comp>
+    <comp ref="J3">
+      <value>XIAO_BAT+_wire</value>
+      <footprint>TestPoint:TestPoint_THTPad_2.0x2.0mm_Drill1.0mm</footprint>
+      <fields>
+        <field name="Footprint">TestPoint:TestPoint_THTPad_2.0x2.0mm_Drill1.0mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Connector" part="TestPoint" description="test point"/>
+      <property name="Sheetname" value="shield"/>
+      <property name="Sheetfile" value="shield.kicad_sch"/>
+      <property name="exclude_from_bom"/>
+      <property name="exclude_from_pos_files"/>
+      <property name="ki_keywords" value="test point tp"/>
+      <property name="ki_fp_filters" value="Pin* Test*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>afcf089c-92e6-5aea-9b0c-693ff26b1665</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
     <comp ref="LED1">
-      <value>Green</value>
+      <value>Red</value>
       <footprint>LED_SMD:LED_0603_1608Metric</footprint>
       <fields>
-        <field name="LCSC">C72043</field>
+        <field name="LCSC">C2286</field>
         <field name="Footprint">LED_SMD:LED_0603_1608Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="LED" description="Light emitting diode"/>
-      <property name="LCSC" value="C72043"/>
+      <property name="LCSC" value="C2286"/>
       <property name="Sheetname" value="shield"/>
       <property name="Sheetfile" value="shield.kicad_sch"/>
       <property name="ki_keywords" value="LED diode"/>
       <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>63f23c0e-74cf-5c2b-a32c-d3063646b285</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="MOT1">
-      <value>MOTOR M1</value>
-      <footprint>shield:Motor_Pads_2x3mm</footprint>
-      <fields>
-        <field name="Footprint">shield:Motor_Pads_2x3mm</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Connector_Generic" part="Conn_01x02" description="Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="exclude_from_bom"/>
-      <property name="exclude_from_pos_files"/>
-      <property name="ki_keywords" value="connector"/>
-      <property name="ki_fp_filters" value="Connector*:*_1x??_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>4ce28266-232d-5236-90b3-c61080047b67</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="MOT2">
-      <value>MOTOR M2</value>
-      <footprint>shield:Motor_Pads_2x3mm</footprint>
-      <fields>
-        <field name="Footprint">shield:Motor_Pads_2x3mm</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Connector_Generic" part="Conn_01x02" description="Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="exclude_from_bom"/>
-      <property name="exclude_from_pos_files"/>
-      <property name="ki_keywords" value="connector"/>
-      <property name="ki_fp_filters" value="Connector*:*_1x??_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>aa2dcdd4-f551-5c0e-b166-38197d9f961f</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="MOT3">
-      <value>MOTOR M3</value>
-      <footprint>shield:Motor_Pads_2x3mm</footprint>
-      <fields>
-        <field name="Footprint">shield:Motor_Pads_2x3mm</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Connector_Generic" part="Conn_01x02" description="Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="exclude_from_bom"/>
-      <property name="exclude_from_pos_files"/>
-      <property name="ki_keywords" value="connector"/>
-      <property name="ki_fp_filters" value="Connector*:*_1x??_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>9d5fdebf-c675-5d3b-a7fd-00b4a0cb1cf7</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="MOT4">
-      <value>MOTOR M4</value>
-      <footprint>shield:Motor_Pads_2x3mm</footprint>
-      <fields>
-        <field name="Footprint">shield:Motor_Pads_2x3mm</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Connector_Generic" part="Conn_01x02" description="Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="exclude_from_bom"/>
-      <property name="exclude_from_pos_files"/>
-      <property name="ki_keywords" value="connector"/>
-      <property name="ki_fp_filters" value="Connector*:*_1x??_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>7de3c351-cd63-5d96-a1fe-a8cf1383f756</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -802,114 +573,6 @@
         </unit>
       </units>
     </comp>
-    <comp ref="Q1">
-      <value>AO3400A</value>
-      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
-      <fields>
-        <field name="LCSC">C20917</field>
-        <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Transistor_FET" part="AO3400A" description="30V Vds, 5.7A Id, N-Channel MOSFET, SOT-23"/>
-      <property name="LCSC" value="C20917"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="ki_keywords" value="N-Channel MOSFET"/>
-      <property name="ki_fp_filters" value="SOT?23*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>d76cf19b-ba23-54b1-a6a8-5300e4ac3e27</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="3"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="Q2">
-      <value>AO3400A</value>
-      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
-      <fields>
-        <field name="LCSC">C20917</field>
-        <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Transistor_FET" part="AO3400A" description="30V Vds, 5.7A Id, N-Channel MOSFET, SOT-23"/>
-      <property name="LCSC" value="C20917"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="ki_keywords" value="N-Channel MOSFET"/>
-      <property name="ki_fp_filters" value="SOT?23*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>4e2abf81-ab26-525f-8b7d-fa2eec6df6ae</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="3"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="Q3">
-      <value>AO3400A</value>
-      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
-      <fields>
-        <field name="LCSC">C20917</field>
-        <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Transistor_FET" part="AO3400A" description="30V Vds, 5.7A Id, N-Channel MOSFET, SOT-23"/>
-      <property name="LCSC" value="C20917"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="ki_keywords" value="N-Channel MOSFET"/>
-      <property name="ki_fp_filters" value="SOT?23*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>f7e6803f-4046-568c-83db-7964ed1741ae</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="3"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="Q4">
-      <value>AO3400A</value>
-      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
-      <fields>
-        <field name="LCSC">C20917</field>
-        <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Transistor_FET" part="AO3400A" description="30V Vds, 5.7A Id, N-Channel MOSFET, SOT-23"/>
-      <property name="LCSC" value="C20917"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="ki_keywords" value="N-Channel MOSFET"/>
-      <property name="ki_fp_filters" value="SOT?23*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>6d47c169-bdf9-5692-a4c9-b034c5dd74ad</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="3"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
     <comp ref="Q5">
       <value>DMP2008UFG-7</value>
       <footprint>Package_SON:Diodes_PowerDI3333-8</footprint>
@@ -935,214 +598,6 @@
             <pin num="1"/>
             <pin num="2"/>
             <pin num="3"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="R1">
-      <value>100R 1%</value>
-      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC">C25076</field>
-        <field name="Footprint">Resistor_SMD:R_0402_1005Metric</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Device" part="R" description="Resistor"/>
-      <property name="LCSC" value="C25076"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="ki_keywords" value="R res resistor"/>
-      <property name="ki_fp_filters" value="R_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>19393d56-0d22-5c77-ad7a-677c0f5bee3d</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="R2">
-      <value>100R 1%</value>
-      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC">C25076</field>
-        <field name="Footprint">Resistor_SMD:R_0402_1005Metric</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Device" part="R" description="Resistor"/>
-      <property name="LCSC" value="C25076"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="ki_keywords" value="R res resistor"/>
-      <property name="ki_fp_filters" value="R_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>6e637ee7-0156-5787-8a26-863c1e59d6b5</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="R3">
-      <value>100R 1%</value>
-      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC">C25076</field>
-        <field name="Footprint">Resistor_SMD:R_0402_1005Metric</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Device" part="R" description="Resistor"/>
-      <property name="LCSC" value="C25076"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="ki_keywords" value="R res resistor"/>
-      <property name="ki_fp_filters" value="R_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>9229b953-409f-5302-8451-b92bb90a0f03</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="R4">
-      <value>100R 1%</value>
-      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC">C25076</field>
-        <field name="Footprint">Resistor_SMD:R_0402_1005Metric</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Device" part="R" description="Resistor"/>
-      <property name="LCSC" value="C25076"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="ki_keywords" value="R res resistor"/>
-      <property name="ki_fp_filters" value="R_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>bfb11588-247c-5575-874f-7c8e6c2fec89</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="R5">
-      <value>100k 1%</value>
-      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC">C25741</field>
-        <field name="Footprint">Resistor_SMD:R_0402_1005Metric</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Device" part="R" description="Resistor"/>
-      <property name="LCSC" value="C25741"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="ki_keywords" value="R res resistor"/>
-      <property name="ki_fp_filters" value="R_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>bc4d3f71-4ab5-5b83-9dfd-6f63b0b918f0</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="R6">
-      <value>100k 1%</value>
-      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC">C25741</field>
-        <field name="Footprint">Resistor_SMD:R_0402_1005Metric</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Device" part="R" description="Resistor"/>
-      <property name="LCSC" value="C25741"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="ki_keywords" value="R res resistor"/>
-      <property name="ki_fp_filters" value="R_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>d2c99279-9dd3-5324-9cf1-acd017e9592a</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="R7">
-      <value>100k 1%</value>
-      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC">C25741</field>
-        <field name="Footprint">Resistor_SMD:R_0402_1005Metric</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Device" part="R" description="Resistor"/>
-      <property name="LCSC" value="C25741"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="ki_keywords" value="R res resistor"/>
-      <property name="ki_fp_filters" value="R_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>1b0f7f8b-b20a-5fb0-9e65-5e28c13025f1</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="R8">
-      <value>100k 1%</value>
-      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
-      <fields>
-        <field name="LCSC">C25741</field>
-        <field name="Footprint">Resistor_SMD:R_0402_1005Metric</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="Device" part="R" description="Resistor"/>
-      <property name="LCSC" value="C25741"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="ki_keywords" value="R res resistor"/>
-      <property name="ki_fp_filters" value="R_*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>b6dd76ab-1c19-5942-a2d4-9a0221727543</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
           </pins>
         </unit>
       </units>
@@ -1268,6 +723,33 @@
       <property name="ki_fp_filters" value="R_*"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>d13e3cd4-27a2-5589-9b24-dd7254f42484</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R14">
+      <value>22R</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>Resistor</description>
+      <fields>
+        <field name="LCSC">C25092</field>
+        <field name="Footprint">Resistor_SMD:R_0402_1005Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="LCSC" value="C25092"/>
+      <property name="Sheetname" value="shield"/>
+      <property name="Sheetfile" value="shield.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>666e7837-72b1-42f6-bcc8-5d97eced9596</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -1441,30 +923,554 @@
       </units>
     </comp>
     <comp ref="U2">
-      <value>ME6211C33M5G-N</value>
-      <footprint>Package_TO_SOT_SMD:SOT-23-5</footprint>
+      <value>XC6206P332MR</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23-3</footprint>
+      <datasheet>https://www.torexsemi.com/file/xc6206/XC6206.pdf</datasheet>
+      <description>Positive 60-250mA Low Dropout Regulator, Fixed Output, SOT-23</description>
       <fields>
-        <field name="LCSC">C82942</field>
-        <field name="Footprint">Package_TO_SOT_SMD:SOT-23-5</field>
+        <field name="LCSC">C5446</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23-3</field>
+        <field name="Datasheet">https://www.torexsemi.com/file/xc6206/XC6206.pdf</field>
+        <field name="Description">Positive 60-250mA Low Dropout Regulator, Fixed Output, SOT-23</field>
+      </fields>
+      <libsource lib="Regulator_Linear" part="XC6206PxxxMR" description="Positive 60-250mA Low Dropout Regulator, Fixed Output, SOT-23"/>
+      <property name="LCSC" value="C5446"/>
+      <property name="Sheetname" value="shield"/>
+      <property name="Sheetfile" value="shield.kicad_sch"/>
+      <property name="ki_keywords" value="Torex LDO Voltage Regulator Fixed Positive"/>
+      <property name="ki_fp_filters" value="SOT?23?3*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>ff3f45e9-7ad6-4207-ab0f-f933ad60e936</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="3"/>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="D1">
+      <value>SS34</value>
+      <footprint>Diode_SMD:D_SMA</footprint>
+      <fields>
+        <field name="LCSC">C8678</field>
+        <field name="Footprint">Diode_SMD:D_SMA</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
-      <libsource lib="Regulator_Linear" part="ME6211C33M5" description="500mA low dropout linear regulator, shutdown pin, 6.5V max input voltage, 3.3V fixed positive output, SOT-23-5"/>
-      <property name="LCSC" value="C82942"/>
-      <property name="Sheetname" value="shield"/>
-      <property name="Sheetfile" value="shield.kicad_sch"/>
-      <property name="ki_keywords" value="linear regulator ldo fixed positive"/>
-      <property name="ki_fp_filters" value="SOT?23?5*"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>e1c798df-5015-5ce6-ae0f-f1cc12abc282</tstamps>
+      <libsource lib="Device" part="D_Schottky" description="Schottky diode"/>
+      <property name="LCSC" value="C8678"/>
+      <property name="Sheetname" value="Motor1"/>
+      <property name="Sheetfile" value="motor_driver.kicad_sch"/>
+      <property name="ki_keywords" value="diode Schottky"/>
+      <property name="ki_fp_filters" value="TO-???* *_Diode_* *SingleDiode* D_*"/>
+      <sheetpath names="/Motor1/" tstamps="/5a85dd7f-0cdb-5070-ad7c-0f1de1612efc/"/>
+      <tstamps>d2b3491d-9deb-5d27-9000-875b98aa7b44</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="MOT1">
+      <value>MOTOR</value>
+      <footprint>shield:Motor_Pads_2x2mm</footprint>
+      <fields>
+        <field name="Footprint">shield:Motor_Pads_2x2mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Connector_Generic" part="Conn_01x02" description="Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="Sheetname" value="Motor1"/>
+      <property name="Sheetfile" value="motor_driver.kicad_sch"/>
+      <property name="exclude_from_bom"/>
+      <property name="exclude_from_pos_files"/>
+      <property name="ki_keywords" value="connector"/>
+      <property name="ki_fp_filters" value="Connector*:*_1x??_*"/>
+      <sheetpath names="/Motor1/" tstamps="/5a85dd7f-0cdb-5070-ad7c-0f1de1612efc/"/>
+      <tstamps>4ce28266-232d-5236-90b3-c61080047b67</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="Q1">
+      <value>AO3400A</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <fields>
+        <field name="LCSC">C20917</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Transistor_FET" part="AO3400A" description="30V Vds, 5.7A Id, N-Channel MOSFET, SOT-23"/>
+      <property name="LCSC" value="C20917"/>
+      <property name="Sheetname" value="Motor1"/>
+      <property name="Sheetfile" value="motor_driver.kicad_sch"/>
+      <property name="ki_keywords" value="N-Channel MOSFET"/>
+      <property name="ki_fp_filters" value="SOT?23*"/>
+      <sheetpath names="/Motor1/" tstamps="/5a85dd7f-0cdb-5070-ad7c-0f1de1612efc/"/>
+      <tstamps>d76cf19b-ba23-54b1-a6a8-5300e4ac3e27</tstamps>
       <units>
         <unit name="A">
           <pins>
             <pin num="1"/>
             <pin num="3"/>
             <pin num="2"/>
-            <pin num="4"/>
-            <pin num="5"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R1">
+      <value>100R 1%</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <fields>
+        <field name="LCSC">C25076</field>
+        <field name="Footprint">Resistor_SMD:R_0402_1005Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="LCSC" value="C25076"/>
+      <property name="Sheetname" value="Motor1"/>
+      <property name="Sheetfile" value="motor_driver.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/Motor1/" tstamps="/5a85dd7f-0cdb-5070-ad7c-0f1de1612efc/"/>
+      <tstamps>19393d56-0d22-5c77-ad7a-677c0f5bee3d</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R5">
+      <value>100k 1%</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <fields>
+        <field name="LCSC">C25741</field>
+        <field name="Footprint">Resistor_SMD:R_0402_1005Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="LCSC" value="C25741"/>
+      <property name="Sheetname" value="Motor1"/>
+      <property name="Sheetfile" value="motor_driver.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/Motor1/" tstamps="/5a85dd7f-0cdb-5070-ad7c-0f1de1612efc/"/>
+      <tstamps>bc4d3f71-4ab5-5b83-9dfd-6f63b0b918f0</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="D2">
+      <value>SS34</value>
+      <footprint>Diode_SMD:D_SMA</footprint>
+      <fields>
+        <field name="LCSC">C8678</field>
+        <field name="Footprint">Diode_SMD:D_SMA</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="D_Schottky" description="Schottky diode"/>
+      <property name="LCSC" value="C8678"/>
+      <property name="Sheetname" value="Motor2"/>
+      <property name="Sheetfile" value="motor_driver.kicad_sch"/>
+      <property name="ki_keywords" value="diode Schottky"/>
+      <property name="ki_fp_filters" value="TO-???* *_Diode_* *SingleDiode* D_*"/>
+      <sheetpath names="/Motor2/" tstamps="/4ab62b34-8ed6-5300-bd4f-a99630f8ac3e/"/>
+      <tstamps>d2b3491d-9deb-5d27-9000-875b98aa7b44</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="MOT2">
+      <value>MOTOR</value>
+      <footprint>shield:Motor_Pads_2x2mm</footprint>
+      <fields>
+        <field name="Footprint">shield:Motor_Pads_2x2mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Connector_Generic" part="Conn_01x02" description="Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="Sheetname" value="Motor2"/>
+      <property name="Sheetfile" value="motor_driver.kicad_sch"/>
+      <property name="exclude_from_bom"/>
+      <property name="exclude_from_pos_files"/>
+      <property name="ki_keywords" value="connector"/>
+      <property name="ki_fp_filters" value="Connector*:*_1x??_*"/>
+      <sheetpath names="/Motor2/" tstamps="/4ab62b34-8ed6-5300-bd4f-a99630f8ac3e/"/>
+      <tstamps>4ce28266-232d-5236-90b3-c61080047b67</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="Q2">
+      <value>AO3400A</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <fields>
+        <field name="LCSC">C20917</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Transistor_FET" part="AO3400A" description="30V Vds, 5.7A Id, N-Channel MOSFET, SOT-23"/>
+      <property name="LCSC" value="C20917"/>
+      <property name="Sheetname" value="Motor2"/>
+      <property name="Sheetfile" value="motor_driver.kicad_sch"/>
+      <property name="ki_keywords" value="N-Channel MOSFET"/>
+      <property name="ki_fp_filters" value="SOT?23*"/>
+      <sheetpath names="/Motor2/" tstamps="/4ab62b34-8ed6-5300-bd4f-a99630f8ac3e/"/>
+      <tstamps>d76cf19b-ba23-54b1-a6a8-5300e4ac3e27</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="3"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R2">
+      <value>100R 1%</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <fields>
+        <field name="LCSC">C25076</field>
+        <field name="Footprint">Resistor_SMD:R_0402_1005Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="LCSC" value="C25076"/>
+      <property name="Sheetname" value="Motor2"/>
+      <property name="Sheetfile" value="motor_driver.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/Motor2/" tstamps="/4ab62b34-8ed6-5300-bd4f-a99630f8ac3e/"/>
+      <tstamps>19393d56-0d22-5c77-ad7a-677c0f5bee3d</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R6">
+      <value>100k 1%</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <fields>
+        <field name="LCSC">C25741</field>
+        <field name="Footprint">Resistor_SMD:R_0402_1005Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="LCSC" value="C25741"/>
+      <property name="Sheetname" value="Motor2"/>
+      <property name="Sheetfile" value="motor_driver.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/Motor2/" tstamps="/4ab62b34-8ed6-5300-bd4f-a99630f8ac3e/"/>
+      <tstamps>bc4d3f71-4ab5-5b83-9dfd-6f63b0b918f0</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="D3">
+      <value>SS34</value>
+      <footprint>Diode_SMD:D_SMA</footprint>
+      <fields>
+        <field name="LCSC">C8678</field>
+        <field name="Footprint">Diode_SMD:D_SMA</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="D_Schottky" description="Schottky diode"/>
+      <property name="LCSC" value="C8678"/>
+      <property name="Sheetname" value="Motor3"/>
+      <property name="Sheetfile" value="motor_driver.kicad_sch"/>
+      <property name="ki_keywords" value="diode Schottky"/>
+      <property name="ki_fp_filters" value="TO-???* *_Diode_* *SingleDiode* D_*"/>
+      <sheetpath names="/Motor3/" tstamps="/81c35721-1ee2-5e4a-942d-74daf08dc1fd/"/>
+      <tstamps>d2b3491d-9deb-5d27-9000-875b98aa7b44</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="MOT3">
+      <value>MOTOR</value>
+      <footprint>shield:Motor_Pads_2x2mm</footprint>
+      <fields>
+        <field name="Footprint">shield:Motor_Pads_2x2mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Connector_Generic" part="Conn_01x02" description="Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="Sheetname" value="Motor3"/>
+      <property name="Sheetfile" value="motor_driver.kicad_sch"/>
+      <property name="exclude_from_bom"/>
+      <property name="exclude_from_pos_files"/>
+      <property name="ki_keywords" value="connector"/>
+      <property name="ki_fp_filters" value="Connector*:*_1x??_*"/>
+      <sheetpath names="/Motor3/" tstamps="/81c35721-1ee2-5e4a-942d-74daf08dc1fd/"/>
+      <tstamps>4ce28266-232d-5236-90b3-c61080047b67</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="Q3">
+      <value>AO3400A</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <fields>
+        <field name="LCSC">C20917</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Transistor_FET" part="AO3400A" description="30V Vds, 5.7A Id, N-Channel MOSFET, SOT-23"/>
+      <property name="LCSC" value="C20917"/>
+      <property name="Sheetname" value="Motor3"/>
+      <property name="Sheetfile" value="motor_driver.kicad_sch"/>
+      <property name="ki_keywords" value="N-Channel MOSFET"/>
+      <property name="ki_fp_filters" value="SOT?23*"/>
+      <sheetpath names="/Motor3/" tstamps="/81c35721-1ee2-5e4a-942d-74daf08dc1fd/"/>
+      <tstamps>d76cf19b-ba23-54b1-a6a8-5300e4ac3e27</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="3"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R3">
+      <value>100R 1%</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <fields>
+        <field name="LCSC">C25076</field>
+        <field name="Footprint">Resistor_SMD:R_0402_1005Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="LCSC" value="C25076"/>
+      <property name="Sheetname" value="Motor3"/>
+      <property name="Sheetfile" value="motor_driver.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/Motor3/" tstamps="/81c35721-1ee2-5e4a-942d-74daf08dc1fd/"/>
+      <tstamps>19393d56-0d22-5c77-ad7a-677c0f5bee3d</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R7">
+      <value>100k 1%</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <fields>
+        <field name="LCSC">C25741</field>
+        <field name="Footprint">Resistor_SMD:R_0402_1005Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="LCSC" value="C25741"/>
+      <property name="Sheetname" value="Motor3"/>
+      <property name="Sheetfile" value="motor_driver.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/Motor3/" tstamps="/81c35721-1ee2-5e4a-942d-74daf08dc1fd/"/>
+      <tstamps>bc4d3f71-4ab5-5b83-9dfd-6f63b0b918f0</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="D4">
+      <value>SS34</value>
+      <footprint>Diode_SMD:D_SMA</footprint>
+      <fields>
+        <field name="LCSC">C8678</field>
+        <field name="Footprint">Diode_SMD:D_SMA</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="D_Schottky" description="Schottky diode"/>
+      <property name="LCSC" value="C8678"/>
+      <property name="Sheetname" value="Motor4"/>
+      <property name="Sheetfile" value="motor_driver.kicad_sch"/>
+      <property name="ki_keywords" value="diode Schottky"/>
+      <property name="ki_fp_filters" value="TO-???* *_Diode_* *SingleDiode* D_*"/>
+      <sheetpath names="/Motor4/" tstamps="/4e974f51-a80e-55af-be3b-618de22c8e7f/"/>
+      <tstamps>d2b3491d-9deb-5d27-9000-875b98aa7b44</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="MOT4">
+      <value>MOTOR</value>
+      <footprint>shield:Motor_Pads_2x2mm</footprint>
+      <fields>
+        <field name="Footprint">shield:Motor_Pads_2x2mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Connector_Generic" part="Conn_01x02" description="Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="Sheetname" value="Motor4"/>
+      <property name="Sheetfile" value="motor_driver.kicad_sch"/>
+      <property name="exclude_from_bom"/>
+      <property name="exclude_from_pos_files"/>
+      <property name="ki_keywords" value="connector"/>
+      <property name="ki_fp_filters" value="Connector*:*_1x??_*"/>
+      <sheetpath names="/Motor4/" tstamps="/4e974f51-a80e-55af-be3b-618de22c8e7f/"/>
+      <tstamps>4ce28266-232d-5236-90b3-c61080047b67</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="Q4">
+      <value>AO3400A</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <fields>
+        <field name="LCSC">C20917</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Transistor_FET" part="AO3400A" description="30V Vds, 5.7A Id, N-Channel MOSFET, SOT-23"/>
+      <property name="LCSC" value="C20917"/>
+      <property name="Sheetname" value="Motor4"/>
+      <property name="Sheetfile" value="motor_driver.kicad_sch"/>
+      <property name="ki_keywords" value="N-Channel MOSFET"/>
+      <property name="ki_fp_filters" value="SOT?23*"/>
+      <sheetpath names="/Motor4/" tstamps="/4e974f51-a80e-55af-be3b-618de22c8e7f/"/>
+      <tstamps>d76cf19b-ba23-54b1-a6a8-5300e4ac3e27</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="3"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R4">
+      <value>100R 1%</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <fields>
+        <field name="LCSC">C25076</field>
+        <field name="Footprint">Resistor_SMD:R_0402_1005Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="LCSC" value="C25076"/>
+      <property name="Sheetname" value="Motor4"/>
+      <property name="Sheetfile" value="motor_driver.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/Motor4/" tstamps="/4e974f51-a80e-55af-be3b-618de22c8e7f/"/>
+      <tstamps>19393d56-0d22-5c77-ad7a-677c0f5bee3d</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R8">
+      <value>100k 1%</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <fields>
+        <field name="LCSC">C25741</field>
+        <field name="Footprint">Resistor_SMD:R_0402_1005Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="LCSC" value="C25741"/>
+      <property name="Sheetname" value="Motor4"/>
+      <property name="Sheetfile" value="motor_driver.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/Motor4/" tstamps="/4e974f51-a80e-55af-be3b-618de22c8e7f/"/>
+      <tstamps>bc4d3f71-4ab5-5b83-9dfd-6f63b0b918f0</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
           </pins>
         </unit>
       </units>
@@ -1618,38 +1624,23 @@
         <pin num="2" name="" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="Mechanical" part="MountingHole">
-      <description>Mounting Hole without connection</description>
+    <libpart lib="Regulator_Linear" part="XC6206PxxxMR">
+      <description>Positive 60-250mA Low Dropout Regulator, Fixed Output, SOT-23</description>
+      <docs>https://www.torexsemi.com/file/xc6206/XC6206.pdf</docs>
       <footprints>
-        <fp>MountingHole*</fp>
-      </footprints>
-      <fields>
-        <field name="Reference">H</field>
-        <field name="Value">MountingHole</field>
-        <field name="Footprint"/>
-        <field name="Datasheet"/>
-        <field name="Description">Mounting Hole without connection</field>
-      </fields>
-    </libpart>
-    <libpart lib="Regulator_Linear" part="ME6211C33M5">
-      <description>500mA low dropout linear regulator, shutdown pin, 6.5V max input voltage, 3.3V fixed positive output, SOT-23-5</description>
-      <docs>https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_MICRONE-Nanjing-Micro-One-Elec-ME6211C33R5G_C235316.pdf</docs>
-      <footprints>
-        <fp>SOT?23?5*</fp>
+        <fp>SOT?23?3*</fp>
       </footprints>
       <fields>
         <field name="Reference">U</field>
-        <field name="Value">ME6211C33M5</field>
-        <field name="Footprint">Package_TO_SOT_SMD:SOT-23-5</field>
-        <field name="Datasheet">https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_MICRONE-Nanjing-Micro-One-Elec-ME6211C33R5G_C235316.pdf</field>
-        <field name="Description">500mA low dropout linear regulator, shutdown pin, 6.5V max input voltage, 3.3V fixed positive output, SOT-23-5</field>
+        <field name="Value">XC6206PxxxMR</field>
+        <field name="Footprint">Package_TO_SOT_SMD:SOT-23-3</field>
+        <field name="Datasheet">https://www.torexsemi.com/file/xc6206/XC6206.pdf</field>
+        <field name="Description">Positive 60-250mA Low Dropout Regulator, Fixed Output, SOT-23</field>
       </fields>
       <pins>
-        <pin num="1" name="V_{IN}" type="power_in"/>
-        <pin num="2" name="V_{SS}" type="power_in"/>
-        <pin num="3" name="CE" type="input"/>
-        <pin num="4" name="NC" type="no_connect"/>
-        <pin num="5" name="V_{OUT}" type="power_out"/>
+        <pin num="1" name="GND" type="power_in"/>
+        <pin num="2" name="VO" type="power_out"/>
+        <pin num="3" name="VI" type="power_in"/>
       </pins>
     </libpart>
     <libpart lib="Transistor_FET" part="AO3400A">
@@ -1733,9 +1724,6 @@
     <library logical="Device">
       <uri>${KICAD10_SYMBOL_DIR}/Device.kicad_sym</uri>
     </library>
-    <library logical="Mechanical">
-      <uri>${KICAD10_SYMBOL_DIR}/Mechanical.kicad_sym</uri>
-    </library>
     <library logical="Regulator_Linear">
       <uri>${KICAD10_SYMBOL_DIR}/Regulator_Linear.kicad_sym</uri>
     </library>
@@ -1755,33 +1743,13 @@
       <node ref="TP2" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="U1" pin="5" pinfunction="VDDIO_5" pintype="power_in"/>
       <node ref="U1" pin="8" pinfunction="VDD_8" pintype="power_in"/>
-      <node ref="U2" pin="5" pinfunction="V_{OUT}_5" pintype="power_out"/>
+      <node ref="U2" pin="2" pinfunction="VO_2" pintype="power_out"/>
     </net>
     <net code="2" name="/BAT_IN" class="Default">
       <node ref="BAT1" pin="1" pinfunction="Pin_1_1" pintype="passive"/>
       <node ref="Q5" pin="5" pinfunction="D_5" pintype="passive"/>
     </net>
-    <net code="3" name="/GATE1" class="Default">
-      <node ref="Q1" pin="1" pinfunction="G_1" pintype="input"/>
-      <node ref="R1" pin="2" pintype="passive"/>
-      <node ref="R5" pin="1" pintype="passive"/>
-    </net>
-    <net code="4" name="/GATE2" class="Default">
-      <node ref="Q2" pin="1" pinfunction="G_1" pintype="input"/>
-      <node ref="R2" pin="2" pintype="passive"/>
-      <node ref="R6" pin="1" pintype="passive"/>
-    </net>
-    <net code="5" name="/GATE3" class="Default">
-      <node ref="Q3" pin="1" pinfunction="G_1" pintype="input"/>
-      <node ref="R3" pin="2" pintype="passive"/>
-      <node ref="R7" pin="1" pintype="passive"/>
-    </net>
-    <net code="6" name="/GATE4" class="Default">
-      <node ref="Q4" pin="1" pinfunction="G_1" pintype="input"/>
-      <node ref="R4" pin="2" pintype="passive"/>
-      <node ref="R8" pin="1" pintype="passive"/>
-    </net>
-    <net code="7" name="/GND" class="Default">
+    <net code="3" name="/GND" class="Default">
       <node ref="C1" pin="2" pintype="passive"/>
       <node ref="C12" pin="2" pintype="passive"/>
       <node ref="C2" pin="2" pintype="passive"/>
@@ -1799,42 +1767,62 @@
       <node ref="U1" pin="3" pinfunction="SCX_3" pintype="input"/>
       <node ref="U1" pin="6" pinfunction="GND_6" pintype="power_in"/>
       <node ref="U1" pin="7" pinfunction="GND_7" pintype="passive"/>
-      <node ref="U2" pin="2" pinfunction="V_{SS}_2" pintype="power_in"/>
+      <node ref="U2" pin="1" pinfunction="GND_1" pintype="power_in"/>
     </net>
-    <net code="8" name="/IMU_CS" class="Default">
+    <net code="4" name="/IMU_CS" class="Default">
       <node ref="J1" pin="7" pinfunction="Pin_7_7" pintype="passive"/>
       <node ref="R11" pin="2" pintype="passive"/>
       <node ref="U1" pin="12" pinfunction="CS_12" pintype="input"/>
     </net>
-    <net code="9" name="/IMU_INT1" class="Default">
+    <net code="5" name="/IMU_INT1" class="Default">
       <node ref="J1" pin="6" pinfunction="Pin_6_6" pintype="passive"/>
       <node ref="TP5" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="U1" pin="4" pinfunction="INT1_4" pintype="output"/>
     </net>
-    <net code="10" name="/LED_A" class="Default">
+    <net code="6" name="/LED_A" class="Default">
       <node ref="LED1" pin="2" pinfunction="A_2" pintype="passive"/>
       <node ref="R13" pin="2" pintype="passive"/>
     </net>
-    <net code="11" name="/LED_STAT" class="Default">
+    <net code="7" name="/LED_STAT" class="Default">
       <node ref="J2" pin="7" pinfunction="Pin_7_7" pintype="passive"/>
       <node ref="R13" pin="1" pintype="passive"/>
     </net>
-    <net code="12" name="/MOT1_N" class="Default">
+    <net code="8" name="/Motor1/GATE" class="Default">
+      <node ref="Q1" pin="1" pinfunction="G_1" pintype="input"/>
+      <node ref="R1" pin="2" pintype="passive"/>
+      <node ref="R5" pin="1" pintype="passive"/>
+    </net>
+    <net code="9" name="/Motor1/MOT_N" class="Default">
       <node ref="D1" pin="2" pinfunction="A_2" pintype="passive"/>
       <node ref="MOT1" pin="2" pinfunction="Pin_2_2" pintype="passive"/>
       <node ref="Q1" pin="3" pinfunction="D_3" pintype="passive"/>
     </net>
-    <net code="13" name="/MOT2_N" class="Default">
+    <net code="10" name="/Motor2/GATE" class="Default">
+      <node ref="Q2" pin="1" pinfunction="G_1" pintype="input"/>
+      <node ref="R2" pin="2" pintype="passive"/>
+      <node ref="R6" pin="1" pintype="passive"/>
+    </net>
+    <net code="11" name="/Motor2/MOT_N" class="Default">
       <node ref="D2" pin="2" pinfunction="A_2" pintype="passive"/>
       <node ref="MOT2" pin="2" pinfunction="Pin_2_2" pintype="passive"/>
       <node ref="Q2" pin="3" pinfunction="D_3" pintype="passive"/>
     </net>
-    <net code="14" name="/MOT3_N" class="Default">
+    <net code="12" name="/Motor3/GATE" class="Default">
+      <node ref="Q3" pin="1" pinfunction="G_1" pintype="input"/>
+      <node ref="R3" pin="2" pintype="passive"/>
+      <node ref="R7" pin="1" pintype="passive"/>
+    </net>
+    <net code="13" name="/Motor3/MOT_N" class="Default">
       <node ref="D3" pin="2" pinfunction="A_2" pintype="passive"/>
       <node ref="MOT3" pin="2" pinfunction="Pin_2_2" pintype="passive"/>
       <node ref="Q3" pin="3" pinfunction="D_3" pintype="passive"/>
     </net>
-    <net code="15" name="/MOT4_N" class="Default">
+    <net code="14" name="/Motor4/GATE" class="Default">
+      <node ref="Q4" pin="1" pinfunction="G_1" pintype="input"/>
+      <node ref="R4" pin="2" pintype="passive"/>
+      <node ref="R8" pin="1" pintype="passive"/>
+    </net>
+    <net code="15" name="/Motor4/MOT_N" class="Default">
       <node ref="D4" pin="2" pinfunction="A_2" pintype="passive"/>
       <node ref="MOT4" pin="2" pinfunction="Pin_2_2" pintype="passive"/>
       <node ref="Q4" pin="3" pinfunction="D_3" pintype="passive"/>
@@ -1888,18 +1876,24 @@
       <node ref="J2" pin="6" pinfunction="Pin_6_6" pintype="passive"/>
       <node ref="U1" pin="13" pinfunction="SCL_13" pintype="input"/>
     </net>
-    <net code="25" name="/VBAT_P" class="Default">
-      <node ref="C10" pin="1" pintype="passive"/>
-      <node ref="C11" pin="1" pintype="passive"/>
+    <net code="25" name="/VBAT_LDO" class="Default">
       <node ref="C5" pin="1" pintype="passive"/>
       <node ref="C6" pin="1" pintype="passive"/>
+      <node ref="R14" pin="2" pintype="passive"/>
+      <node ref="U2" pin="3" pinfunction="VI_3" pintype="power_in"/>
+    </net>
+    <net code="26" name="/VBAT_P" class="Default">
+      <node ref="C10" pin="1" pintype="passive"/>
+      <node ref="C11" pin="1" pintype="passive"/>
+      <node ref="C12" pin="1" pintype="passive"/>
+      <node ref="C4" pin="1" pintype="passive"/>
       <node ref="C8" pin="1" pintype="passive"/>
       <node ref="C9" pin="1" pintype="passive"/>
       <node ref="D1" pin="1" pinfunction="K_1" pintype="passive"/>
       <node ref="D2" pin="1" pinfunction="K_1" pintype="passive"/>
       <node ref="D3" pin="1" pinfunction="K_1" pintype="passive"/>
       <node ref="D4" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="D5" pin="2" pinfunction="A_2" pintype="passive"/>
+      <node ref="J3" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="MOT1" pin="1" pinfunction="Pin_1_1" pintype="passive"/>
       <node ref="MOT2" pin="1" pinfunction="Pin_1_1" pintype="passive"/>
       <node ref="MOT3" pin="1" pinfunction="Pin_1_1" pintype="passive"/>
@@ -1907,38 +1901,31 @@
       <node ref="Q5" pin="1" pinfunction="S_1" pintype="passive"/>
       <node ref="Q5" pin="2" pinfunction="S_2" pintype="passive"/>
       <node ref="Q5" pin="3" pinfunction="S_3" pintype="passive"/>
+      <node ref="R14" pin="1" pintype="passive"/>
       <node ref="R9" pin="1" pintype="passive"/>
       <node ref="TP1" pin="1" pinfunction="1_1" pintype="passive"/>
-      <node ref="U2" pin="1" pinfunction="V_{IN}_1" pintype="power_in"/>
-      <node ref="U2" pin="3" pinfunction="CE_3" pintype="input"/>
     </net>
-    <net code="26" name="/VBAT_SENSE" class="Default">
+    <net code="27" name="/VBAT_SENSE" class="Default">
       <node ref="C3" pin="1" pintype="passive"/>
       <node ref="J1" pin="5" pinfunction="Pin_5_5" pintype="passive"/>
       <node ref="R10" pin="1" pintype="passive"/>
       <node ref="R9" pin="2" pintype="passive"/>
     </net>
-    <net code="27" name="/XIAO_5V" class="Default">
-      <node ref="C12" pin="1" pintype="passive"/>
-      <node ref="C4" pin="1" pintype="passive"/>
-      <node ref="D5" pin="1" pinfunction="K_1" pintype="passive"/>
+    <net code="28" name="/XIAO_5V" class="Default">
       <node ref="J2" pin="1" pinfunction="Pin_1_1" pintype="passive"/>
       <node ref="TP4" pin="1" pinfunction="1_1" pintype="passive"/>
     </net>
-    <net code="28" name="unconnected-(J2-Pin_3-Pad3)" class="Default">
+    <net code="29" name="unconnected-(J2-Pin_3-Pad3)" class="Default">
       <node ref="J2" pin="3" pinfunction="Pin_3_3" pintype="passive+no_connect"/>
     </net>
-    <net code="29" name="unconnected-(U1-INT2-Pad9)" class="Default">
+    <net code="30" name="unconnected-(U1-INT2-Pad9)" class="Default">
       <node ref="U1" pin="9" pinfunction="INT2_9" pintype="output+no_connect"/>
     </net>
-    <net code="30" name="unconnected-(U1-NC-Pad10)" class="Default">
+    <net code="31" name="unconnected-(U1-NC-Pad10)" class="Default">
       <node ref="U1" pin="10" pinfunction="NC_10" pintype="no_connect"/>
     </net>
-    <net code="31" name="unconnected-(U1-NC-Pad11)" class="Default">
+    <net code="32" name="unconnected-(U1-NC-Pad11)" class="Default">
       <node ref="U1" pin="11" pinfunction="NC_11" pintype="no_connect"/>
-    </net>
-    <net code="32" name="unconnected-(U2-NC-Pad4)" class="Default">
-      <node ref="U2" pin="4" pinfunction="NC_4" pintype="no_connect"/>
     </net>
   </nets>
 </export>

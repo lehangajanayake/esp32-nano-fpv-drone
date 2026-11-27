@@ -7,9 +7,9 @@ Nets are in the order of section 5 of [shield-pcb-requirements.md](../docs/shiel
 | Net | Pins | Count |
 | --- | --- | --- |
 | `BAT_IN` | BAT1.1, Q5.5 (D) | 2 |
-| `VBAT_P` | C5.1, C6.1, C8.1, C9.1, C10.1, C11.1, D1.1 (K), D2.1 (K), D3.1 (K), D4.1 (K), D5.2 (A), MOT1.1, MOT2.1, MOT3.1, MOT4.1, Q5.1 (S), Q5.2 (S), Q5.3 (S), R9.1, TP1.1, U2.1 (V\_IN), U2.3 (CE) | 22 |
+| `VBAT_P` | C4.1, C8.1, C9.1, C10.1, C11.1, C12.1, D1.1 (K), D2.1 (K), D3.1 (K), D4.1 (K), J3.1, MOT1.1, MOT2.1, MOT3.1, MOT4.1, Q5.1 (S), Q5.2 (S), Q5.3 (S), R9.1, R14.1, TP1.1 | 21 |
 | `PGND` | BAT1.2, C8.2, C9.2, C10.2, C11.2, NT1.1, Q1.2 (S), Q2.2 (S), Q3.2 (S), Q4.2 (S), R5.2, R6.2, R7.2, R8.2, R12.2 | 15 |
-| `GND` | C1.2, C2.2, C3.2, C4.2, C5.2, C6.2, C7.2, C12.2, J2.2, LED1.1 (K), NT1.2, R10.2, TP3.1, U1.2 (SDX), U1.3 (SCX), U1.6 (GND), U1.7 (GND), U2.2 (V\_SS) | 18 |
+| `GND` | C1.2, C2.2, C3.2, C4.2, C5.2, C6.2, C7.2, C12.2, J2.2, LED1.1 (K), NT1.2, R10.2, TP3.1, U1.2 (SDX), U1.3 (SCX), U1.6 (GND), U1.7 (GND), U2.1 (GND) | 18 |
 | `Q5_G` | Q5.4 (G), R12.1 | 2 |
 | `MOT1_N` | D1.2 (A), MOT1.2, Q1.3 (D) | 3 |
 | `MOT2_N` | D2.2 (A), MOT2.2, Q2.3 (D) | 3 |
@@ -23,8 +23,9 @@ Nets are in the order of section 5 of [shield-pcb-requirements.md](../docs/shiel
 | `GATE2` | Q2.1 (G), R2.2, R6.1 | 3 |
 | `GATE3` | Q3.1 (G), R3.2, R7.1 | 3 |
 | `GATE4` | Q4.1 (G), R4.2, R8.1 | 3 |
-| `XIAO_5V` | C4.1, C12.1, D5.1 (K), J2.1, TP4.1 | 5 |
-| `+3V3_IMU` | C1.1, C2.1, C7.1, R11.1, TP2.1, U1.5 (VDDIO), U1.8 (VDD), U2.5 (V\_OUT) | 8 |
+| `XIAO_5V` | J2.1, TP4.1 | 2 |
+| `VBAT_LDO` | C5.1, C6.1, R14.2, U2.3 (VI) | 4 |
+| `+3V3_IMU` | C1.1, C2.1, C7.1, R11.1, TP2.1, U1.5 (VDDIO), U1.8 (VDD), U2.2 (VO) | 8 |
 | `VBAT_SENSE` | C3.1, J1.5, R9.2, R10.1 | 4 |
 | `IMU_INT1` | J1.6, TP5.1, U1.4 (INT1) | 3 |
 | `IMU_CS` | J1.7, R11.2, U1.12 (CS) | 3 |
@@ -34,7 +35,7 @@ Nets are in the order of section 5 of [shield-pcb-requirements.md](../docs/shiel
 | `SPI_MISO` | J2.5, U1.1 (SDO/SA0) | 2 |
 | `SPI_MOSI` | J2.4, U1.14 (SDA) | 2 |
 
-**Unconnected pins (no-connect flag or NC pin type):** J2.3, U1.9 (INT2), U1.10 (NC), U1.11 (NC), U2.4 (NC)
+**Unconnected pins (no-connect flag or NC pin type):** J2.3, U1.9 (INT2), U1.10 (NC), U1.11 (NC)
 
 ## Check against requirements section 5
 
@@ -42,7 +43,8 @@ Every net in section 5 matches the schematic pin for pin, with no extra nets and
 
 Notes on how the section 5 wording maps to KiCad pins:
 
+- GATE1 to GATE4 and MOT1\_N to MOT4\_N are `/Motor<n>/GATE` and `/Motor<n>/MOT_N` in KiCad: the four motor channels are one sub-sheet (`motor_driver.kicad_sch`) used four times.
 - Q5 drain "pins 5 to 8 and pad" is pad 5 here: KiCad's `Diodes_PowerDI3333-8` footprint merges all drain copper into one pad, and the symbol has one drain pin.
 - "D1 to D4 cathodes" are pin 1 (K) of the `Device:D_Schottky` symbol; anodes are pin 2 (A). LED1 cathode is pin 1 (K), anode pin 2 (A).
 - Section 5 lists the XIAO GND as "J2 pin 13 (XIAO GND)"; per the socket table in 5.1 that is socket pin J2.2 (XIAO pin 13).
-- Extra unconnected pins beyond section 5's no-connect list: U2.4 (NC). These have the NC pin type in the symbol, so they need no flag.
+- Extra unconnected pins beyond section 5's no-connect list: none. These have the NC pin type in the symbol, so they need no flag.

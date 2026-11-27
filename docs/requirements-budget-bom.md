@@ -40,13 +40,13 @@ A 720 motor is a 7 x 20 mm brushed coreless motor for 1S; listings give about 3 
 
 ## 3. Shield requirements
 
-The XIAO plugs into two 7-pin female headers on the shield's underside, so it can be pulled out for flashing, swapping or repair; the Sense camera is mounted facing forward (XD-V10).
+The XIAO sits on top of the shield in two 7-pin female headers (its back and battery pads facing the shield, Sense camera board on top), so it can be pulled out for flashing, swapping or repair; the Sense camera is mounted facing forward (XD-V10).
 
 ### 3.1 Connection to the XIAO
 
 | ID | Requirement | Target | Priority |
 | --- | --- | --- | --- |
-| XD-S1 | Two 1 x 7 female headers, 2.54 mm pitch, on the underside, matching the XIAO's edge pins | XIAO plugs in with no soldering on the shield side | Must |
+| XD-S1 | Two 1 x 7 female headers, 2.54 mm pitch, on the shield's upper (socket) side, matching the XIAO's edge pins | XIAO plugs in with no soldering on the shield side | Must |
 | XD-S2 | XIAO fitted with male pin headers (bought pre-soldered, or soldered once) | Seats fully in the sockets | Must |
 | XD-S3 | XIAO held against vibration | Printed clip or a dab of hot glue on the header ends | Must |
 | XD-S4 | Forward-facing camera mount and clearance for the Sense camera board and the Wi-Fi antenna | Checked with a 3D model before ordering | Must |
@@ -59,7 +59,7 @@ The XIAO plugs into two 7-pin female headers on the shield's underside, so it ca
 | XD-S6 | One low-side N-channel MOSFET per motor (AO3400A or similar) | Fully on from a 3.3 V gate; 5 A or more | Must |
 | XD-S7 | 100 ohm gate resistor and 100 kohm gate pull-down on every MOSFET | Motors never twitch during boot or reset | Must |
 | XD-S8 | Schottky flyback diode across each motor | Rated 2 A or more (the 720's peak), e.g. a 3 A part in SMA | Must |
-| XD-S9 | Motor solder pads, 2 per motor, with a strain-relief hole for the leads | Pads about 2 x 3 mm; labelled motor number and spin direction | Must |
+| XD-S9 | Motor solder pads, 2 per motor, with a strain-relief hole for the leads | Pads 2 x 2 mm at the board corners; labelled motor number and spin direction | Must |
 | XD-S10 | PWM frequency | 16 to 32 kHz from the ESP32 LEDC timers | Must |
 
 ### 3.3 IMU and power
@@ -68,12 +68,12 @@ The XIAO plugs into two 7-pin female headers on the shield's underside, so it ca
 | --- | --- | --- | --- |
 | XD-S11 | 6-axis IMU (LSM6DS3TR-C) on SPI, near the shield's centre, aligned with the board edges, away from motor traces | Gyro up to 2000 dps | Must |
 | XD-S18 | IMU INT1 (data-ready) wired to XIAO pin D5 (GPIO6); the flight loop is timed from this interrupt instead of polling | One interrupt per gyro sample, no missed samples | Must |
-| XD-S12 | 3.3 V LDO (ME6211C33) for the IMU only; never tied to the XIAO's 3V3 pin | 10 uF in and out, 100 nF at the IMU | Must |
+| XD-S12 | 3.3 V LDO (XC6206P332, behind a 22 ohm / 10 uF ripple filter) for the IMU only; never tied to the XIAO's 3V3 pin | 10 uF in and out, 100 nF at the IMU | Must |
 | XD-S13 | Battery solder pads only, no connector on the shield, so any pack or pigtail can be fitted later; options in section 5 | Rated 10 A peak | Must |
 | XD-S19 | Reverse polarity protection right after the battery pads: a P-channel MOSFET (DMP2008UFG) in the positive lead, drain to the battery pad, source to the protected rail (VBAT\_P), gate to ground through 10 kohm. Everything else (motors, LDO, XIAO, divider, bulk caps) runs from VBAT\_P | Reversed pack draws no current and damages nothing; forward drop under 100 mV at 8 A (9.8 mohm max at 2.5 V gate drive) | Must |
 | XD-S20 | Protection MOSFET sits on a copper pour on both drain and source sides to spread heat; only 1S packs are ever fitted (its gate is rated ±8 V, a 2S pack would exceed it) | Under 0.7 W at the 8 A peak, about 0.25 W at hover | Must |
 | XD-S14 | Bulk capacitance on the protected rail (VBAT\_P), right after the protection MOSFET | 4 x 22 uF ceramic | Must |
-| XD-S15 | XIAO power from the protected rail (VBAT\_P) that never brown-outs under motor load and never lets USB 5 V reach the battery | Method chosen from Seeed's schematic | Must |
+| XD-S15 | XIAO power from the protected rail (VBAT\_P) into the XIAO's BAT+ pad (its own P-FET path), so it never browns out under motor load; USB 5 V reaches the battery only through the XIAO's Li-ion charger (4.2 V, about 110 mA) | Chosen from Seeed's schematic: the 5V pin has an internal Schottky, BAT+ does not (shield doc section 4.3) | Must |
 | XD-S16 | Battery voltage divider (100 k / 100 k + 100 nF) from the protected rail into XIAO pin D4 (GPIO5, ADC1 channel 4); the drone's only battery gauge, as the XIAO ESP32-S3 has no battery sense of its own. ADC1 must be used because ADC2 can't be read while Wi-Fi is on, and D6/D7 have no ADC at all | ±50 mV after calibration | Must |
 | XD-S17 | Motor current routed in wide copper between battery pads and MOSFETs, away from the IMU; one ground join near the battery pads | 3 mm or wider pours | Must |
 
@@ -104,7 +104,8 @@ Every header pin is now in use; there is no spare GPIO left.
 | D7 | GPIO44 | Status LED (XD-S25) |
 | D8 / D9 / D10 | GPIO7 / 8 / 9 | SPI SCK / MISO / MOSI, shared by the IMU and the Sense board's microSD |
 | (not on headers) | GPIO21 | microSD chip select and built-in user LED, on the Sense board |
-| 5V or battery pads | — | XIAO power from VBAT\_P (XD-S15) |
+| BAT+ pad (back) | — | XIAO power from VBAT\_P, by a short wire to shield pad J3 (XD-S15) |
+| 5V | — | Test point only (USB present) |
 | GND | — | Shield ground |
 
 D6 and D7 are the ESP32-S3's UART0 pins, so firmware uses USB serial only and never starts UART0. The boot messages the chip prints on D6 just toggle the IMU chip select with no clock, which the IMU ignores.
@@ -222,7 +223,7 @@ Two lists: what JLC assembles onto each shield, and what you buy and fit yoursel
 | Designator | Part | Value / type | JLC part # | Qty | Package |
 | --- | --- | --- | --- | --- | --- |
 | U1 | IMU | ST LSM6DS3TR-C | C967633 (matched) | 1 | LGA-14 2.5 x 3 mm |
-| U2 | 3.3 V LDO | ME6211C33M5G-N | C82942 (matched) | 1 | SOT-23-5 |
+| U2 | 3.3 V LDO | XC6206P332MR-G | C5446 (basic) | 1 | SOT-23 |
 | Q1-Q4 | Motor MOSFET | AO3400A, 30 V | C20917 (matched) | 4 | SOT-23 |
 | D1-D4 | Flyback diode | Schottky, 3 A 40 V (e.g. SS34) | pick in JLC library | 4 | SMA |
 | R1-R4 | Gate resistor | 100 ohm | basic part | 4 | 0402 |
@@ -235,8 +236,9 @@ Two lists: what JLC assembles onto each shield, and what you buy and fit yoursel
 | C8-C11 | Bulk on VBAT\_P | 22 uF (25 V) | C45783 (matched) | 4 | 0805 |
 | Q5 | Reverse polarity MOSFET | DMP2008UFG-7, P-ch 20 V 14 A, 9.8 mohm at -2.5 V | C461052 (extended) | 1 | PowerDI3333-8 |
 | R12 | Q5 gate to ground | 10 kohm | basic part | 1 | 0402 |
-| LED1 | Status LED | Green, 0603 | C72043 (extended) or any 0603 LED in JLC's basic library | 1 | 0603 |
+| LED1 | Status LED | Red, 0603 (KENTO KT-0603R, Vf about 2 V, about 1.3 mA with R13) | C2286 (basic) | 1 | 0603 |
 | R13 | LED1 series resistor | 1 kohm | basic part | 1 | 0402 |
+| R14 | IMU LDO feed: ripple filter with C6, and a link you can lift to isolate the IMU branch | 22 ohm | C25092 (basic) | 1 | 0402 |
 | J1-J2 | XIAO sockets | 1 x 7 female header, 2.54 mm | pick in JLC library | 2 | Through-hole |
 | — | Motor pads, battery pads | copper pads only | — | — | — |
 
@@ -301,7 +303,7 @@ The biggest unknown is whether 720 motors with 65 mm props lift a 60 g drone wit
 | 720 + 65 mm props give less than 30 g thrust per motor | Sluggish or unsafe flight | Week 1 thrust test on a kitchen scale; try 55 mm props; cut weight (lighter frame, 720 mAh pack) |
 | Brushed motors wear and lose thrust | Shorter flights, drift | Log flight minutes per motor; 4 spare motors; swap at the first drop in thrust |
 | XIAO works loose in its sockets from vibration | Mid-air reset | Printed clip or hot glue on the header ends (XD-S3) |
-| How the XIAO gets battery power (XD-S15) | Brown-outs or USB backfeed | Read Seeed's schematic before the schematic is drawn; test on the bench board with motors running |
+| How the XIAO gets battery power (XD-S15) | Brown-outs or uncontrolled USB backfeed | Resolved from Seeed's schematic: feed BAT+ (P-FET, about 0.05 V drop) rather than the 5V pin (internal Schottky); confirm with B7 on the bench with motors running |
 | Female headers add height under the shield | Camera or antenna clashes with the frame | 3D-model the stack before ordering (XD-S4) |
 | Battery connector choice (A30 vs BT2.0) | Packs and pigtails don't match | Pick one type for every pack, pigtail and the charger |
 | Wi-Fi video delay too long to fly by | Hard to fly FPV; crashes | Measure delay on the bare XIAO in week 1; lower resolution and JPEG quality; fly slowly in angle mode |
@@ -317,7 +319,7 @@ The biggest unknown is whether 720 motors with 65 mm props lift a 60 g drone wit
 - [ ] **B2 Power-up:** shield on a current-limited bench supply at 3.7 V, no XIAO fitted; 3.3 V rail reads 3.2 to 3.4 V.
 - [ ] **B13 Reverse polarity:** no XIAO fitted, bench supply at 4.2 V limited to 100 mA, connected backwards for 5 s; under 1 mA flows and the shield then powers up normally the right way round. Repeat once with the XIAO fitted.
 - [ ] **B3 XIAO fitted:** boots from the battery; motors stay still through power-up and reset.
-- [ ] **B4 USB alone:** nothing appears on the battery pads with USB plugged in and no battery.
+- [ ] **B4 USB alone:** with USB plugged in and no battery, the battery pads read at most 4.2 V (the XIAO's charger) and no motor moves; with a battery fitted, it charges at about 110 mA (the XIAO's charge LED is on). Firmware refuses to arm while USB is connected.
 - [ ] **B5 IMU:** reads its ID over SPI; gyro reads near zero when still; INT1 on D5 fires at the set data rate (count interrupts for 10 s).
 - [ ] **B6 Motors:** each spins the right way at 10, 50 and 100% PWM; MOSFETs stay under 80 °C after 10 s at full.
 - [ ] **B14 Protection MOSFET:** all motors at full for 10 s; voltage across Q5 under 100 mV and Q5 under 80 °C.
